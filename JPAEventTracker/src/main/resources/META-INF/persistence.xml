@@ -4,17 +4,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
-	<persistence-unit name="XtremePU">
+	<persistence-unit name="EventPU">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
 
 		<!-- Class Definitions -->
-		<class>com.skilldistillery.FIXME.entities.FIXME</class> <!-- FIXME -->
+		<class>com.skilldistillery.jpaeventtracker.entities.Beverage</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/eventdb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />
-			<property name="javax.persistence.jdbc.user" value="eventuser" />
+			<property name="javax.persistence.jdbc.user"
+				value="eventuser" />
 			<property name="javax.persistence.jdbc.password"
 				value="eventuser" />
 			<property name="javax.persistence.jdbc.driver"
