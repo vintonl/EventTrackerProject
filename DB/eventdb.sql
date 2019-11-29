@@ -16,11 +16,25 @@ CREATE SCHEMA IF NOT EXISTS `eventdb` DEFAULT CHARACTER SET utf8 ;
 USE `eventdb` ;
 
 -- -----------------------------------------------------
--- Table `Beverage`
+-- Table `beverage_tracker`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `Beverage` ;
+DROP TABLE IF EXISTS `beverage_tracker` ;
 
-CREATE TABLE IF NOT EXISTS `Beverage` (
+CREATE TABLE IF NOT EXISTS `beverage_tracker` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
+  `date_consumed` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `beverage`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `beverage` ;
+
+CREATE TABLE IF NOT EXISTS `beverage` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
   `description` VARCHAR(400) NULL DEFAULT NULL,
@@ -30,7 +44,14 @@ CREATE TABLE IF NOT EXISTS `Beverage` (
   `calories` INT NOT NULL DEFAULT 0,
   `volume` DOUBLE NOT NULL DEFAULT 8,
   `active` TINYINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`))
+  `beverage_tracker_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `beverage_tracker_id`),
+  INDEX `fk_beverage_beverage_tracker_idx` (`beverage_tracker_id` ASC),
+  CONSTRAINT `fk_beverage_beverage_tracker`
+    FOREIGN KEY (`beverage_tracker_id`)
+    REFERENCES `beverage_tracker` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -45,12 +66,22 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `Beverage`
+-- Data for table `beverage_tracker`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `Beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`) VALUES (1, 'water', 'H2O from the tap', 'water', DEFAULT, DEFAULT, 0, 8, DEFAULT);
-INSERT INTO `Beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`) VALUES (2, 'coffee', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 8, DEFAULT);
+INSERT INTO `beverage_tracker` (`id`, `first_name`, `last_name`, `date_consumed`) VALUES (1, 'Test', 'Test', DEFAULT);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `beverage`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `eventdb`;
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`) VALUES (1, 'water', 'H2O from the tap', 'water', DEFAULT, DEFAULT, 0, 8, DEFAULT, 1);
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`) VALUES (2, 'coffee', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 8, DEFAULT, 1);
 
 COMMIT;
 

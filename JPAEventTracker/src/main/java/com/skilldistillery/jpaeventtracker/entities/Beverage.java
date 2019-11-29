@@ -9,19 +9,20 @@ import javax.persistence.Id;
 @Entity
 public class Beverage {
 
-//	+------------------+--------------+------+-----+---------+----------------+
-//	| Field            | Type         | Null | Key | Default | Extra          |
-//	+------------------+--------------+------+-----+---------+----------------+
-//	| id               | int(11)      | NO   | PRI | NULL    | auto_increment |
-//	| name             | varchar(200) | NO   |     | NULL    |                |
-//	| description      | varchar(400) | YES  |     | NULL    |                |
-//	| ingredients      | text         | YES  |     | NULL    |                |
-//	| caffeinated      | tinyint(4)   | NO   |     | 0       |                |
-//	| contains_alcohol | tinyint(4)   | NO   |     | 0       |                |
-//	| calories         | int(11)      | NO   |     | 0       |                |
-//	| volume           | double       | NO   |     | 8       |                |
-//	| active           | tinyint(4)   | NO   |     | 1       |                |
-//	+------------------+--------------+------+-----+---------+----------------+
+//	+---------------------+--------------+------+-----+---------+----------------+
+//	| Field               | Type         | Null | Key | Default | Extra          |
+//	+---------------------+--------------+------+-----+---------+----------------+
+//	| id                  | int(11)      | NO   | PRI | NULL    | auto_increment |
+//	| name                | varchar(200) | NO   |     | NULL    |                |
+//	| description         | varchar(400) | YES  |     | NULL    |                |
+//	| ingredients         | text         | YES  |     | NULL    |                |
+//	| caffeinated         | tinyint(4)   | NO   |     | 0       |                |
+//	| contains_alcohol    | tinyint(4)   | NO   |     | 0       |                |
+//	| calories            | int(11)      | NO   |     | 0       |                |
+//	| volume              | double       | NO   |     | 8       |                |
+//	| active              | tinyint(4)   | NO   |     | 1       |                |
+//	| beverage_tracker_id | int(11)      | NO   | PRI | NULL    |                |
+//	+---------------------+--------------+------+-----+---------+----------------+---------+--------------+------+-----+---------+----------------+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
