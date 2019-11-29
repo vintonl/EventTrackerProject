@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `beverage` (
   `volume` DOUBLE NOT NULL DEFAULT 8,
   `active` TINYINT NOT NULL DEFAULT 1,
   `beverage_tracker_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `beverage_tracker_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_beverage_beverage_tracker_idx` (`beverage_tracker_id` ASC),
   CONSTRAINT `fk_beverage_beverage_tracker`
     FOREIGN KEY (`beverage_tracker_id`)

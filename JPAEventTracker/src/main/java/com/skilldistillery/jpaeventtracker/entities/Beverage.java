@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Beverage {
@@ -21,9 +23,9 @@ public class Beverage {
 //	| calories            | int(11)      | NO   |     | 0       |                |
 //	| volume              | double       | NO   |     | 8       |                |
 //	| active              | tinyint(4)   | NO   |     | 1       |                |
-//	| beverage_tracker_id | int(11)      | NO   | PRI | NULL    |                |
-//	+---------------------+--------------+------+-----+---------+----------------+---------+--------------+------+-----+---------+----------------+
-
+//	| beverage_tracker_id | int(11)      | NO   | MUL | NULL    |                |
+//	+---------------------+--------------+------+-----+---------+----------------+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -36,6 +38,10 @@ public class Beverage {
 	private Integer calories;
 	private Double volume;
 	private boolean active;
+
+	@ManyToOne()
+	@JoinColumn(name = "beverage_tracker_id")
+	private BeverageTracker beverageTracker;
 
 	public Beverage() {
 		super();
@@ -127,6 +133,14 @@ public class Beverage {
 		this.active = active;
 	}
 
+	public BeverageTracker getBevTracker() {
+		return beverageTracker;
+	}
+
+	public void setBevTracker(BeverageTracker bevTracker) {
+		this.beverageTracker = bevTracker;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -153,7 +167,7 @@ public class Beverage {
 	public String toString() {
 		return "Beverage [id=" + id + ", name=" + name + ", description=" + description + ", ingredients=" + ingredients
 				+ ", caffeinated=" + caffeinated + ", containsAlcohol=" + containsAlcohol + ", calories=" + calories
-				+ ", volume=" + volume + ", active=" + active + "]";
+				+ ", volume=" + volume + ", active=" + active + ", bevTracker=" + beverageTracker + "]";
 	}
 
 }

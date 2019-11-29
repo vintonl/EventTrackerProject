@@ -1,15 +1,20 @@
 package com.skilldistillery.jpaeventtracker.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "beverage_tracker")
@@ -35,6 +40,10 @@ public class BeverageTracker {
 	@CreationTimestamp
 	private Date dateConsumed;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "beverageTracker")
+	private List<Beverage> beverages;
+	
 	public BeverageTracker() {
 		super();
 	}
@@ -69,6 +78,22 @@ public class BeverageTracker {
 
 	public void setDateConsumed(Date dateConsumed) {
 		this.dateConsumed = dateConsumed;
+	}
+
+	public List<Beverage> getBevs() {
+		return beverages;
+	}
+
+	public void setBevs(List<Beverage> bevs) {
+		this.beverages = bevs;
+	}
+
+	public List<Beverage> getBeverages() {
+		return beverages;
+	}
+
+	public void setBeverages(List<Beverage> beverages) {
+		this.beverages = beverages;
 	}
 
 	@Override
