@@ -53,5 +53,11 @@ class BeverageTest {
 		assertEquals(8, bev.getVolume());
 		assertTrue(bev.isActive());
 	}
+	
+	@Test
+	@DisplayName("Test relationship with beverage tracker")
+	void test1() {
+		assertEquals("Test", bev.getBevTracker().getFirstName());
+	}
 
 }

@@ -48,5 +48,11 @@ class BeverageTrackerTest {
 		assertEquals("Test", bevT.getLastName());
 		assertTrue(bevT.getDateConsumed().toString().contains("2019-11-28"));
 	}
+	
+	@Test
+	@DisplayName("Test relationship with beverage")
+	void test1() {
+		assertEquals("water", bevT.getBeverages().get(0).getName());
+	}
 
 }
