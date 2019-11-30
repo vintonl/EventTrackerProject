@@ -36,8 +36,9 @@ public class BeverageController {
 
 		if (bevs == null) {
 			resp.setStatus(404);
-		} else {
-			resp.setStatus(200);
+		}
+		if (bevs.size() == 0) {
+			resp.setStatus(204);
 		}
 
 		return bevs;
@@ -62,8 +63,9 @@ public class BeverageController {
 
 		if (bevs == null) {
 			resp.setStatus(404);
-		} else {
-			resp.setStatus(200);
+		}
+		if (bevs.size() == 0) {
+			resp.setStatus(204);
 		}
 
 		return bevs;
@@ -74,10 +76,11 @@ public class BeverageController {
 			HttpServletResponse resp) {
 		List<Beverage> bevs = bevSvc.findByKeyword(keyword);
 
-		if (bevs == null) {
+		if (bevs.size() == 0) {
 			resp.setStatus(404);
-		} else {
-			resp.setStatus(200);
+		}
+		if (bevs.size() == 0) {
+			resp.setStatus(204);
 		}
 
 		return bevs;
@@ -90,8 +93,9 @@ public class BeverageController {
 
 		if (bevs == null) {
 			resp.setStatus(404);
-		} else {
-			resp.setStatus(200);
+		}
+		if (bevs.size() == 0) {
+			resp.setStatus(204);
 		}
 
 		return bevs;
@@ -103,8 +107,10 @@ public class BeverageController {
 
 		if (bevs == null) {
 			resp.setStatus(404);
-		} else {
-			resp.setStatus(200);
+		}
+
+		if (bevs.size() == 0) {
+			resp.setStatus(204);
 		}
 
 		return bevs;

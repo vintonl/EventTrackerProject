@@ -1,7 +1,9 @@
 package com.skilldistillery.eventtracker.services;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +56,14 @@ public class BeverageServiceImpl implements BeverageService {
 			managedBev.setCaffeinated(bev.isCaffeinated());
 			managedBev.setContainsAlcohol(bev.isContainsAlcohol());
 			managedBev.setActive(bev.isActive());
+			
+			if (bev.getCreatedAt() == null) {
+				Date date = new Date();
+				managedBev.setCreatedAt(date);
+			} else {
+				managedBev.setCreatedAt(bev.getCreatedAt());
+			}
+			
 			return managedBev;
 		}
 
