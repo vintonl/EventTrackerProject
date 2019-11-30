@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Beverage {
 
@@ -49,6 +51,7 @@ public class Beverage {
 	@UpdateTimestamp
 	private Date updatedAt;
 
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "beverage_tracker_id")
 	private BeverageTracker beverageTracker;

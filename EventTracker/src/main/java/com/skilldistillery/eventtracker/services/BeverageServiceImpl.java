@@ -2,14 +2,21 @@ package com.skilldistillery.eventtracker.services;
 
 import java.util.List;
 
-import com.skilldistillery.eventtracker.entities.Beverage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.skilldistillery.eventtracker.entities.Beverage;
+import com.skilldistillery.eventtracker.repositories.BeverageRepository;
+
+@Service
 public class BeverageServiceImpl implements BeverageService {
 
+	@Autowired
+	private BeverageRepository bevRepo;
+
 	@Override
-	public List<Beverage> findBeveragesByNameOrDescription(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Beverage> findAll() {
+		return bevRepo.findAll();
 	}
 
 }
