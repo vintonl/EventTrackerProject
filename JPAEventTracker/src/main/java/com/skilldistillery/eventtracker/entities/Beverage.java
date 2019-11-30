@@ -162,8 +162,6 @@ public class Beverage {
 		this.caffeine = caffeine;
 	}
 
-
-
 	public BeverageTracker getBeverageTracker() {
 		return beverageTracker;
 	}

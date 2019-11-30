@@ -9,8 +9,8 @@
     </provider>
 
 		<!-- Class Definitions -->
-		<class>com.skilldistillery.jpaeventtracker.entities.Beverage</class>
-		<class>com.skilldistillery.jpaeventtracker.entities.BeverageTracker</class>
+		<class>com.skilldistillery.eventtracker.entities.Beverage</class>
+		<class>com.skilldistillery.eventtracker.entities.BeverageTracker</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
