@@ -45,6 +45,8 @@ CREATE TABLE IF NOT EXISTS `beverage` (
   `volume` DOUBLE NOT NULL DEFAULT 8,
   `active` TINYINT NOT NULL DEFAULT 1,
   `beverage_tracker_id` INT NOT NULL,
+  `caffeine` INT NOT NULL DEFAULT 0,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `fk_beverage_beverage_tracker_idx` (`beverage_tracker_id` ASC),
   CONSTRAINT `fk_beverage_beverage_tracker`
@@ -80,8 +82,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`) VALUES (1, 'water', 'H2O from the tap', 'water', DEFAULT, DEFAULT, 0, 8, DEFAULT, 1);
-INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`) VALUES (2, 'coffee', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 8, DEFAULT, 1);
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`, `caffeine`, `updated_at`) VALUES (1, 'water', 'H2O from the tap', 'water', DEFAULT, DEFAULT, 0, 8, DEFAULT, 1, DEFAULT, DEFAULT);
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`, `caffeine`, `updated_at`) VALUES (2, 'coffee', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 8, DEFAULT, 1, 95, DEFAULT);
 
 COMMIT;
 
