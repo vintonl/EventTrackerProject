@@ -79,14 +79,6 @@ public class BeverageTracker {
 		this.dateConsumed = dateConsumed;
 	}
 
-	public List<Beverage> getBevs() {
-		return beverages;
-	}
-
-	public void setBevs(List<Beverage> bevs) {
-		this.beverages = bevs;
-	}
-
 	public List<Beverage> getBeverages() {
 		return beverages;
 	}
