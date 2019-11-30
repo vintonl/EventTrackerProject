@@ -1,5 +1,6 @@
 package com.skilldistillery.eventtracker.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,6 @@ public interface BeverageRepository extends JpaRepository<Beverage, Integer> {
 	List<Beverage> findByNameContaining(String keyword);
 
 	List<Beverage> findByCaffeineBetween(Integer min, Integer max);
+
+	List<Beverage> findByCreatedAtBetween(Date start, Date end);
 }

@@ -1,5 +1,6 @@
 package com.skilldistillery.eventtracker.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.skilldistillery.eventtracker.entities.Beverage;
@@ -20,5 +21,7 @@ public interface BeverageService {
 	List<Beverage> findByKeyword(String keyword);
 
 	List<Beverage> findByCaffeineBetween(Integer min, Integer max);
+
+	List<Beverage> findByCreatedAt(String date);
 
 }

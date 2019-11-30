@@ -1,5 +1,8 @@
 package com.skilldistillery.eventtracker.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,6 +85,19 @@ public class BeverageServiceImpl implements BeverageService {
 	@Override
 	public List<Beverage> findByCaffeineBetween(Integer min, Integer max) {
 		return bevRepo.findByCaffeineBetween(min, max);
+	}
+
+	@Override
+	public List<Beverage> findByCreatedAt(String dateStr) {
+
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		return bevRepo.findByCreatedAtBetween(date, date);
 	}
 
 }

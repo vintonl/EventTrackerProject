@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Beverage {
@@ -30,6 +33,7 @@ public class Beverage {
 //	| beverage_tracker_id | int(11)      | NO   | MUL | NULL              |                             |
 //	| caffeine            | int(11)      | NO   |     | 0                 |                             |
 //	| updated_at          | datetime     | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+//	| created_at          | datetime     | NO   |     | CURRENT_TIMESTAMP |                             |
 //	+---------------------+--------------+------+-----+-------------------+-----------------------------+
 
 	@Id
@@ -45,6 +49,10 @@ public class Beverage {
 	private Integer calories;
 	private Double volume;
 	private boolean active;
+	@Column(name = "created_at")
+	@CreationTimestamp
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date createdAt;
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	private Date updatedAt;
@@ -55,20 +63,6 @@ public class Beverage {
 
 	public Beverage() {
 		super();
-	}
-
-	public Beverage(int id, String name, String description, String ingredients, boolean caffeinated,
-			boolean containsAlcohol, Integer calories, Double volume, boolean active) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.ingredients = ingredients;
-		this.caffeinated = caffeinated;
-		this.containsAlcohol = containsAlcohol;
-		this.calories = calories;
-		this.volume = volume;
-		this.active = active;
 	}
 
 	public int getId() {
@@ -151,6 +145,14 @@ public class Beverage {
 		this.active = active;
 	}
 
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
@@ -193,8 +195,8 @@ public class Beverage {
 	public String toString() {
 		return "Beverage [id=" + id + ", name=" + name + ", description=" + description + ", ingredients=" + ingredients
 				+ ", caffeinated=" + caffeinated + ", caffeine=" + caffeine + ", containsAlcohol=" + containsAlcohol
-				+ ", calories=" + calories + ", volume=" + volume + ", active=" + active + ", updatedAt=" + updatedAt
-				+ ", beverageTracker=" + beverageTracker + "]";
+				+ ", calories=" + calories + ", volume=" + volume + ", active=" + active + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + ", beverageTracker=" + beverageTracker + "]";
 	}
 
 }

@@ -55,6 +55,7 @@ class BeverageTest {
 		assertEquals(0, bev.getCalories());
 		assertEquals(8, bev.getVolume());
 		assertTrue(bev.isActive());
+		assertTrue(bev.getCreatedAt().toString().contains("2019"));
 		assertTrue(bev.getUpdatedAt().toString().contains("2019"));
 	}
 	
