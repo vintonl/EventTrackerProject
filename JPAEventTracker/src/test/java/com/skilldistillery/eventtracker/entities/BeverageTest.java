@@ -61,7 +61,7 @@ class BeverageTest {
 	@Test
 	@DisplayName("Test relationship with beverage tracker")
 	void test1() {
-		assertEquals("Test", bev.getBevTracker().getFirstName());
+		assertEquals("Test", bev.getBeverageTracker().getFirstName());
 	}
 
 }

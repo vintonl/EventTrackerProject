@@ -12,8 +12,6 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Beverage {
 
@@ -51,7 +49,6 @@ public class Beverage {
 	@UpdateTimestamp
 	private Date updatedAt;
 
-	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "beverage_tracker_id")
 	private BeverageTracker beverageTracker;
@@ -114,6 +111,14 @@ public class Beverage {
 		this.caffeinated = caffeinated;
 	}
 
+	public Integer getCaffeine() {
+		return caffeine;
+	}
+
+	public void setCaffeine(Integer caffeine) {
+		this.caffeine = caffeine;
+	}
+
 	public boolean isContainsAlcohol() {
 		return containsAlcohol;
 	}
@@ -146,20 +151,12 @@ public class Beverage {
 		this.active = active;
 	}
 
-	public BeverageTracker getBevTracker() {
-		return beverageTracker;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setBevTracker(BeverageTracker bevTracker) {
-		this.beverageTracker = bevTracker;
-	}
-
-	public Integer getCaffeine() {
-		return caffeine;
-	}
-
-	public void setCaffeine(Integer caffeine) {
-		this.caffeine = caffeine;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	public BeverageTracker getBeverageTracker() {
@@ -168,14 +165,6 @@ public class Beverage {
 
 	public void setBeverageTracker(BeverageTracker beverageTracker) {
 		this.beverageTracker = beverageTracker;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 
 	@Override

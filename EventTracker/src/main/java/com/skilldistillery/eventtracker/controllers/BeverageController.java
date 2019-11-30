@@ -25,29 +25,16 @@ public class BeverageController {
 		return "pong";
 	}
 
-//	@GetMapping("beverages")
-//	public List<Beverage> showAllBeverages(HttpServletRequest req, HttpServletResponse resp) {
-//		List<Beverage> bevs = bevSvc.findAll();
-//
-//		try {
-//			if (bevs == null) {
-//				resp.setStatus(404);
-//			} else {
-//				resp.setStatus(200);
-//			}
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		return bevs;
-//	}
-	
 	@GetMapping("beverages")
-	public List<Beverage> showAllBeverages() {
+	public List<Beverage> showAllBeverages(HttpServletRequest req, HttpServletResponse resp) {
 		List<Beverage> bevs = bevSvc.findAll();
-		
-		
+
+		if (bevs == null) {
+			resp.setStatus(404);
+		} else {
+			resp.setStatus(200);
+		}
+
 		return bevs;
 	}
 
