@@ -69,9 +69,19 @@ public class BeverageServiceImpl implements BeverageService {
 		return false;
 	}
 
-//	@Override
-//	public List<Beverage> findByCaffeinated() {
-//		return bevRepo.findByCaffeinated();
-//	}
+	@Override
+	public List<Beverage> findByCaffeinated() {
+		return bevRepo.findByCaffeinatedTrue();
+	}
+
+	@Override
+	public List<Beverage> findByKeyword(String keyword) {
+		return bevRepo.findByNameContaining(keyword);
+	}
+
+	@Override
+	public List<Beverage> findByCaffeineBetween(Integer min, Integer max) {
+		return bevRepo.findByCaffeineBetween(min, max);
+	}
 
 }

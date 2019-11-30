@@ -8,5 +8,9 @@ import com.skilldistillery.eventtracker.entities.Beverage;
 
 public interface BeverageRepository extends JpaRepository<Beverage, Integer> {
 
-//	List<Beverage> findByCaffeinated();
+	List<Beverage> findByCaffeinatedTrue();
+
+	List<Beverage> findByNameContaining(String keyword);
+
+	List<Beverage> findByCaffeineBetween(Integer min, Integer max);
 }

@@ -15,6 +15,10 @@ public interface BeverageService {
 
 	boolean deleteBeverage(int id);
 
-//	List<Beverage> findByCaffeinated();
+	List<Beverage> findByCaffeinated();
+
+	List<Beverage> findByKeyword(String keyword);
+
+	List<Beverage> findByCaffeineBetween(Integer min, Integer max);
 
 }

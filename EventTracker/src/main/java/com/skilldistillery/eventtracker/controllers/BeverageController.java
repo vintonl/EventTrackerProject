@@ -56,18 +56,46 @@ public class BeverageController {
 		return bevs;
 	}
 
-//	@GetMapping("beverages/caffeinated")
-//	public List<Beverage> showCaffeinatedBeverages(HttpServletRequest req, HttpServletResponse resp) {
-//		List<Beverage> bevs = bevSvc.findByCaffeinated();
-//
-//		if (bevs == null) {
-//			resp.setStatus(404);
-//		} else {
-//			resp.setStatus(200);
-//		}
-//
-//		return bevs;
-//	}
+	@GetMapping("beverages/caffeinated")
+	public List<Beverage> showCaffeinatedBeverages(HttpServletRequest req, HttpServletResponse resp) {
+		List<Beverage> bevs = bevSvc.findByCaffeinated();
+
+		if (bevs == null) {
+			resp.setStatus(404);
+		} else {
+			resp.setStatus(200);
+		}
+
+		return bevs;
+	}
+
+	@GetMapping("beverages/name/{keyword}")
+	public List<Beverage> searchByKeyword(@PathVariable String keyword, HttpServletRequest req,
+			HttpServletResponse resp) {
+		List<Beverage> bevs = bevSvc.findByKeyword(keyword);
+
+		if (bevs == null) {
+			resp.setStatus(404);
+		} else {
+			resp.setStatus(200);
+		}
+
+		return bevs;
+	}
+
+	@GetMapping("beverages/{min}/{max}")
+	public List<Beverage> searchByMinMaxCaffeine(@PathVariable Integer min, @PathVariable Integer max,
+			HttpServletRequest req, HttpServletResponse resp) {
+		List<Beverage> bevs = bevSvc.findByCaffeineBetween(min, max);
+
+		if (bevs == null) {
+			resp.setStatus(404);
+		} else {
+			resp.setStatus(200);
+		}
+
+		return bevs;
+	}
 
 	@PostMapping("beverages")
 	public Beverage create(@RequestBody Beverage bev, HttpServletRequest req, HttpServletResponse resp) {
