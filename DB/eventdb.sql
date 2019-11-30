@@ -16,15 +16,15 @@ CREATE SCHEMA IF NOT EXISTS `eventdb` DEFAULT CHARACTER SET utf8 ;
 USE `eventdb` ;
 
 -- -----------------------------------------------------
--- Table `beverage_tracker`
+-- Table `User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `beverage_tracker` ;
+DROP TABLE IF EXISTS `User` ;
 
-CREATE TABLE IF NOT EXISTS `beverage_tracker` (
+CREATE TABLE IF NOT EXISTS `User` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
-  `date_consumed` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` DATE NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -44,15 +44,15 @@ CREATE TABLE IF NOT EXISTS `beverage` (
   `calories` INT NOT NULL DEFAULT 0,
   `volume` DOUBLE NOT NULL DEFAULT 8,
   `active` TINYINT NOT NULL DEFAULT 1,
-  `beverage_tracker_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   `caffeine` INT NOT NULL DEFAULT 0,
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` DATE NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_beverage_beverage_tracker_idx` (`beverage_tracker_id` ASC),
+  INDEX `fk_beverage_beverage_tracker_idx` (`user_id` ASC),
   CONSTRAINT `fk_beverage_beverage_tracker`
-    FOREIGN KEY (`beverage_tracker_id`)
-    REFERENCES `beverage_tracker` (`id`)
+    FOREIGN KEY (`user_id`)
+    REFERENCES `User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -69,11 +69,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `beverage_tracker`
+-- Data for table `User`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `beverage_tracker` (`id`, `first_name`, `last_name`, `date_consumed`) VALUES (1, 'Test', 'Test', DEFAULT);
+INSERT INTO `User` (`id`, `first_name`, `last_name`, `created_at`) VALUES (1, 'Test', 'Test', '2019-11-30');
 
 COMMIT;
 
@@ -83,8 +83,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`, `caffeine`, `updated_at`, `created_at`) VALUES (1, 'water', 'H2O from the tap', 'water', DEFAULT, DEFAULT, 0, 8, DEFAULT, 1, DEFAULT, DEFAULT, '2019-11-30');
-INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `beverage_tracker_id`, `caffeine`, `updated_at`, `created_at`) VALUES (2, 'coffee', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 8, DEFAULT, 1, 95, DEFAULT, '2019-11-30');
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `user_id`, `caffeine`, `updated_at`, `created_at`) VALUES (1, 'water', 'H2O from the tap', 'water', DEFAULT, DEFAULT, 0, 8, DEFAULT, 1, DEFAULT, DEFAULT, '2019-11-30');
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `user_id`, `caffeine`, `updated_at`, `created_at`) VALUES (2, 'coffee', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 8, DEFAULT, 1, 95, DEFAULT, '2019-11-30');
 
 COMMIT;
 

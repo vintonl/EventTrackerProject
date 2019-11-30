@@ -16,17 +16,16 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "beverage_tracker")
-public class BeverageTracker {
+public class User {
 
-//	+---------------+-------------+------+-----+---------+----------------+
-//	| Field         | Type        | Null | Key | Default | Extra          |
-//	+---------------+-------------+------+-----+---------+----------------+
-//	| id            | int(11)     | NO   | PRI | NULL    | auto_increment |
-//	| first_name    | varchar(45) | YES  |     | NULL    |                |
-//	| last_name     | varchar(45) | YES  |     | NULL    |                |
-//	| date_consumed | datetime    | YES  |     | NULL    |                |
-//	+---------------+-------------+------+-----+---------+----------------+
+//	+------------+-------------+------+-----+---------+----------------+
+//	| Field      | Type        | Null | Key | Default | Extra          |
+//	+------------+-------------+------+-----+---------+----------------+
+//	| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+//	| first_name | varchar(45) | YES  |     | NULL    |                |
+//	| last_name  | varchar(45) | YES  |     | NULL    |                |
+//	| created_at | date        | NO   |     | NULL    |                |
+//	+------------+-------------+------+-----+---------+----------------+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,15 +34,15 @@ public class BeverageTracker {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@Column(name = "date_consumed")
+	@Column(name = "created_at")
 	@CreationTimestamp
-	private Date dateConsumed;
+	private Date createdAt;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "beverageTracker")
+	@OneToMany(mappedBy = "user")
 	private List<Beverage> beverages;
 
-	public BeverageTracker() {
+	public User() {
 		super();
 	}
 
@@ -71,12 +70,12 @@ public class BeverageTracker {
 		this.lastName = lastName;
 	}
 
-	public Date getDateConsumed() {
-		return dateConsumed;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setDateConsumed(Date dateConsumed) {
-		this.dateConsumed = dateConsumed;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public List<Beverage> getBeverages() {
@@ -85,12 +84,6 @@ public class BeverageTracker {
 
 	public void setBeverages(List<Beverage> beverages) {
 		this.beverages = beverages;
-	}
-
-	@Override
-	public String toString() {
-		return "BeverageTracker [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dateConsumed="
-				+ dateConsumed + "]";
 	}
 
 	@Override
@@ -109,10 +102,16 @@ public class BeverageTracker {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BeverageTracker other = (BeverageTracker) obj;
+		User other = (User) obj;
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", createdAt=" + createdAt
+				+ "]";
 	}
 
 }

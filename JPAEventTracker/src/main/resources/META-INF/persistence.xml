@@ -10,7 +10,7 @@
 
 		<!-- Class Definitions -->
 		<class>com.skilldistillery.eventtracker.entities.Beverage</class>
-		<class>com.skilldistillery.eventtracker.entities.BeverageTracker</class>
+		<class>com.skilldistillery.eventtracker.entities.User</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

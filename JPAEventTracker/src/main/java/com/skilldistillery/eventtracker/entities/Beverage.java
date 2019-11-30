@@ -18,23 +18,23 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Beverage {
 
-//	+---------------------+--------------+------+-----+-------------------+-----------------------------+
-//	| Field               | Type         | Null | Key | Default           | Extra                       |
-//	+---------------------+--------------+------+-----+-------------------+-----------------------------+
-//	| id                  | int(11)      | NO   | PRI | NULL              | auto_increment              |
-//	| name                | varchar(200) | NO   |     | NULL              |                             |
-//	| description         | varchar(400) | YES  |     | NULL              |                             |
-//	| ingredients         | text         | YES  |     | NULL              |                             |
-//	| caffeinated         | tinyint(4)   | NO   |     | 0                 |                             |
-//	| contains_alcohol    | tinyint(4)   | NO   |     | 0                 |                             |
-//	| calories            | int(11)      | NO   |     | 0                 |                             |
-//	| volume              | double       | NO   |     | 8                 |                             |
-//	| active              | tinyint(4)   | NO   |     | 1                 |                             |
-//	| beverage_tracker_id | int(11)      | NO   | MUL | NULL              |                             |
-//	| caffeine            | int(11)      | NO   |     | 0                 |                             |
-//	| updated_at          | datetime     | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
-//	| created_at          | datetime     | NO   |     | CURRENT_TIMESTAMP |                             |
-//	+---------------------+--------------+------+-----+-------------------+-----------------------------+
+//	+------------------+--------------+------+-----+-------------------+-----------------------------+
+//	| Field            | Type         | Null | Key | Default           | Extra                       |
+//	+------------------+--------------+------+-----+-------------------+-----------------------------+
+//	| id               | int(11)      | NO   | PRI | NULL              | auto_increment              |
+//	| name             | varchar(200) | NO   |     | NULL              |                             |
+//	| description      | varchar(400) | YES  |     | NULL              |                             |
+//	| ingredients      | text         | YES  |     | NULL              |                             |
+//	| caffeinated      | tinyint(4)   | NO   |     | 0                 |                             |
+//	| contains_alcohol | tinyint(4)   | NO   |     | 0                 |                             |
+//	| calories         | int(11)      | NO   |     | 0                 |                             |
+//	| volume           | double       | NO   |     | 8                 |                             |
+//	| active           | tinyint(4)   | NO   |     | 1                 |                             |
+//	| user_id          | int(11)      | NO   | MUL | NULL              |                             |
+//	| caffeine         | int(11)      | NO   |     | 0                 |                             |
+//	| updated_at       | datetime     | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
+//	| created_at       | date         | NO   |     | NULL              |                             |
+//	+------------------+--------------+------+-----+-------------------+-----------------------------+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,11 +58,37 @@ public class Beverage {
 	private Date updatedAt;
 
 	@ManyToOne()
-	@JoinColumn(name = "beverage_tracker_id")
-	private BeverageTracker beverageTracker;
+	@JoinColumn(name = "user_id")
+	private User user;
 
-	public Beverage() {
-		super();
+	@Override
+	public String toString() {
+		return "Beverage [id=" + id + ", name=" + name + ", description=" + description + ", ingredients=" + ingredients
+				+ ", caffeinated=" + caffeinated + ", caffeine=" + caffeine + ", containsAlcohol=" + containsAlcohol
+				+ ", calories=" + calories + ", volume=" + volume + ", active=" + active + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + ", user=" + user + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Beverage other = (Beverage) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 	public int getId() {
@@ -161,42 +187,16 @@ public class Beverage {
 		this.updatedAt = updatedAt;
 	}
 
-	public BeverageTracker getBeverageTracker() {
-		return beverageTracker;
+	public User getUser() {
+		return user;
 	}
 
-	public void setBeverageTracker(BeverageTracker beverageTracker) {
-		this.beverageTracker = beverageTracker;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Beverage other = (Beverage) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Beverage [id=" + id + ", name=" + name + ", description=" + description + ", ingredients=" + ingredients
-				+ ", caffeinated=" + caffeinated + ", caffeine=" + caffeine + ", containsAlcohol=" + containsAlcohol
-				+ ", calories=" + calories + ", volume=" + volume + ", active=" + active + ", createdAt=" + createdAt
-				+ ", updatedAt=" + updatedAt + ", beverageTracker=" + beverageTracker + "]";
+	public Beverage() {
+		super();
 	}
 
 }

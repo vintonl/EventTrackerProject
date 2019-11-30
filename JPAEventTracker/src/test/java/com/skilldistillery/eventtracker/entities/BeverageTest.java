@@ -1,6 +1,8 @@
 package com.skilldistillery.eventtracker.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,8 +14,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import com.skilldistillery.eventtracker.entities.Beverage;
 
 class BeverageTest {
 
@@ -62,7 +62,7 @@ class BeverageTest {
 	@Test
 	@DisplayName("Test relationship with beverage tracker")
 	void test1() {
-		assertEquals("Test", bev.getBeverageTracker().getFirstName());
+		assertEquals("Test", bev.getUser().getFirstName());
 	}
 
 }

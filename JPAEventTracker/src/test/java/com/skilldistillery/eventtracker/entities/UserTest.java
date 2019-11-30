@@ -1,6 +1,7 @@
 package com.skilldistillery.eventtracker.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,13 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.eventtracker.entities.BeverageTracker;
-
-class BeverageTrackerTest {
+class UserTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private BeverageTracker bevT;
+	private User user;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,27 +33,27 @@ class BeverageTrackerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		bevT = em.find(BeverageTracker.class, 1);
+		user = em.find(User.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		bevT = null;
+		user = null;
 	}
 
 	@Test
 	@DisplayName("Test the primary fields")
 	void test() {
-		assertEquals("Test", bevT.getFirstName());
-		assertEquals("Test", bevT.getLastName());
-		assertTrue(bevT.getDateConsumed().toString().contains("2019"));
+		assertEquals("Test", user.getFirstName());
+		assertEquals("Test", user.getLastName());
+		assertTrue(user.getCreatedAt().toString().contains("2019"));
 	}
 	
 	@Test
 	@DisplayName("Test relationship with beverage")
 	void test1() {
-		assertEquals("water", bevT.getBeverages().get(0).getName());
+		assertEquals("water", user.getBeverages().get(0).getName());
 	}
 
 }

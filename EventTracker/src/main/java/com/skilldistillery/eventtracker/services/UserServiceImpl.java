@@ -3,6 +3,6 @@ package com.skilldistillery.eventtracker.services;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BeverageTrackerServiceImpl implements BeverageTrackerService {
+public class UserServiceImpl implements UserService {
 
 }

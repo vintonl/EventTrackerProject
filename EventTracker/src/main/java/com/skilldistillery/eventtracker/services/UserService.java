@@ -1,5 +1,5 @@
 package com.skilldistillery.eventtracker.services;
 
-public interface BeverageTrackerService {
+public interface UserService {
 
 }
