@@ -1,4 +1,4 @@
-package com.skilldistillery.jpaeventtracker.entities;
+package com.skilldistillery.eventtracker.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,11 +13,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BeverageTrackerTest {
+import com.skilldistillery.eventtracker.entities.Beverage;
+
+class BeverageTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private BeverageTracker bevT;
+	private Beverage bev;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,27 +34,34 @@ class BeverageTrackerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		bevT = em.find(BeverageTracker.class, 1);
+		bev = em.find(Beverage.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		bevT = null;
+		bev = null;
 	}
 
 	@Test
 	@DisplayName("Test the primary fields")
 	void test() {
-		assertEquals("Test", bevT.getFirstName());
-		assertEquals("Test", bevT.getLastName());
-		assertTrue(bevT.getDateConsumed().toString().contains("2019-11-28"));
+		assertEquals("water", bev.getName());
+		assertEquals("H2O from the tap", bev.getDescription());
+		assertEquals("water", bev.getIngredients());
+		assertFalse(bev.isCaffeinated());
+		assertFalse(bev.isContainsAlcohol());
+		assertEquals(0, bev.getCaffeine());
+		assertEquals(0, bev.getCalories());
+		assertEquals(8, bev.getVolume());
+		assertTrue(bev.isActive());
+		assertTrue(bev.getUpdatedAt().toString().contains("2019"));
 	}
 	
 	@Test
-	@DisplayName("Test relationship with beverage")
+	@DisplayName("Test relationship with beverage tracker")
 	void test1() {
-		assertEquals("water", bevT.getBeverages().get(0).getName());
+		assertEquals("Test", bev.getBevTracker().getFirstName());
 	}
 
 }

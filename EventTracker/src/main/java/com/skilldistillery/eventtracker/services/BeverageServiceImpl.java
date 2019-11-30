@@ -2,7 +2,7 @@ package com.skilldistillery.eventtracker.services;
 
 import java.util.List;
 
-import com.skilldistillery.jpaeventtracker.entities.Beverage;
+import com.skilldistillery.eventtracker.entities.Beverage;
 
 public class BeverageServiceImpl implements BeverageService {
 
