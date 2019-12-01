@@ -20,20 +20,21 @@ Access the REST API by the following route:
 
 ### Routes
 
-| Return Type      | Route                                         | Functionality                                |
-| ---------------- | --------------------------------------------- | -------------------------------------------- |
-| `List<Beverage>` | `GET api/beverages`                           | Get all beverages                            |
-| `Beverage`       | `GET api/beverages/{id}`                      | Get one beverage by id                       |
-| `Beverage`       | `POST api/beverages`                          | Create beverage                              |
-| `Beverage`       | `PUT api/beverages/{id}`                      | Update a beverage by id                      |
-| `Void`           | `DELETE api/beverages/{id}`                   | Delete a beverage by id                      |
-| `List<Beverage>` | `GET api/beverages/caffeinated`               | Get all beverages                            |
-| `List<Beverage>` | `GET api/beverages/name/{keyword}`            | Get all beverages by keyword search of name  |
-| `List<Beverage>` | `GET api/beverages/date/{date}`               | Get all beverages by date (yyyy-MM-dd)       |
-| `List<User>`     | `GET api/users`                               | Get all users                                |
-| `User`           | `POST api/users`                              | Create user                                  |
-| `Beverage`       | `POST api/users/{id}/beverages`               | Create beverage for user by id               |
-| `Void`           | `DELETE api/users/{userId}/beverages/{bevId}` | Delete a beverage by user id and beverage id |
+| Return Type      | Route                                         | Functionality                                  |
+| ---------------- | --------------------------------------------- | ---------------------------------------------- |
+| `List<Beverage>` | `GET api/beverages`                           | Get all beverages                              |
+| `Beverage`       | `GET api/beverages/{id}`                      | Get one beverage by id                         |
+| `Beverage`       | `POST api/beverages`                          | Create beverage                                |
+| `Beverage`       | `PUT api/beverages/{id}`                      | Update a beverage by id                        |
+| `Void`           | `DELETE api/beverages/{id}`                   | Delete a beverage by id                        |
+| `List<Beverage>` | `GET api/beverages/caffeinated`               | Get all caffeinated beverages                  |
+| `List<Beverage>` | `GET api/beverages/{min}/{max}`               | Get all beverages by min and max caffeine mg's |
+| `List<Beverage>` | `GET api/beverages/name/{keyword}`            | Get all beverages by keyword search of name    |
+| `List<Beverage>` | `GET api/beverages/date/{date}`               | Get all beverages by date (yyyy-MM-dd)         |
+| `List<User>`     | `GET api/users`                               | Get all users                                  |
+| `User`           | `POST api/users`                              | Create user                                    |
+| `Beverage`       | `POST api/users/{id}/beverages`               | Create beverage for user by id                 |
+| `Void`           | `DELETE api/users/{userId}/beverages/{bevId}` | Delete a beverage by user id and beverage id   |
 
 ### Technologies used:
 
