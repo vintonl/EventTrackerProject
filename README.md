@@ -12,11 +12,11 @@ This was a weekend project to exceed the minimum viable product for our Event Tr
 
 ### Overview:
 
-This program is designed to be a full stack website application that creates, reads, updates and deletes user and recipe data from a database we built using MySQL Workbench and connecting with using Java Database Connectivity.
+This program is designed to be a REST API that creates, reads, updates and deletes user and beverage data from a database built using MySQL Workbench and connecting with using Spring Data JPA.
 
 ### How to run:
 
-Access the REST API by the following route:
+Access the REST API by the following routes:
 
 ### Routes
 
@@ -33,6 +33,7 @@ Access the REST API by the following route:
 | `List<Beverage>` | `GET api/beverages/date/{date}`               | Get all beverages by date (yyyy-MM-dd)         |
 | `List<User>`     | `GET api/users`                               | Get all users                                  |
 | `User`           | `POST api/users`                              | Create user                                    |
+| `User`           | `PUT api/users/{id}`                          | Update a user by id                            |
 | `Beverage`       | `POST api/users/{id}/beverages`               | Create beverage for user by id                 |
 | `Void`           | `DELETE api/users/{userId}/beverages/{bevId}` | Delete a beverage by user id and beverage id   |
 
@@ -71,3 +72,7 @@ This project helped me better grasp the capabilities of REST API by allowing me 
     -   Use Spring REST annotations.
     -   Use Spring Data JPA to perform all CRUD operations.
     -   Send and receive JSON.
+
+### Stretch Goals Completed:
+
+-   Supplemental table, mappings, and controller routes for nested CRUD.
