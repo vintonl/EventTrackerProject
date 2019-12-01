@@ -43,6 +43,9 @@ public class BeverageServiceImpl implements BeverageService {
 
 	@Override
 	public Beverage createBeverage(Beverage bev) {
+		if (!bev.isCaffeinated() && bev.getCaffeine() > 0) {
+			return null;
+		}
 		return bevRepo.saveAndFlush(bev);
 	}
 
@@ -51,6 +54,10 @@ public class BeverageServiceImpl implements BeverageService {
 		Optional<Beverage> bevOpt = bevRepo.findById(id);
 		if (bevOpt.isPresent()) {
 			Beverage managedBev = bevOpt.get();
+			if (!bev.isCaffeinated() && bev.getCaffeine() > 0) {
+				return null;
+			}
+
 			managedBev.setName(bev.getName());
 			managedBev.setDescription(bev.getDescription());
 			managedBev.setIngredients(bev.getIngredients());
@@ -121,6 +128,9 @@ public class BeverageServiceImpl implements BeverageService {
 		if (userOpt.isPresent()) {
 			User user = userOpt.get();
 			bev.setUser(user);
+			if (!bev.isCaffeinated() && bev.getCaffeine() > 0) {
+				return null;
+			}
 			return bevRepo.saveAndFlush(bev);
 		}
 
