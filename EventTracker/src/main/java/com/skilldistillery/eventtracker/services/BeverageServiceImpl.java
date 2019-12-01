@@ -12,13 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.eventtracker.entities.Beverage;
+import com.skilldistillery.eventtracker.entities.User;
 import com.skilldistillery.eventtracker.repositories.BeverageRepository;
+import com.skilldistillery.eventtracker.repositories.UserRepository;
 
 @Service
 public class BeverageServiceImpl implements BeverageService {
 
 	@Autowired
 	private BeverageRepository bevRepo;
+	@Autowired
+	private UserRepository uRepo;
 
 	@Override
 	public List<Beverage> findAll() {
@@ -108,6 +112,34 @@ public class BeverageServiceImpl implements BeverageService {
 		}
 
 		return bevRepo.findByCreatedAtBetween(date, date);
+	}
+
+	@Override
+	public Beverage createBeverage(int id, Beverage bev) {
+
+		Optional<User> userOpt = uRepo.findById(id);
+		if (userOpt.isPresent()) {
+			User user = userOpt.get();
+			bev.setUser(user);
+			return bevRepo.saveAndFlush(bev);
+		}
+
+		return bev;
+	}
+
+	@Override
+	public boolean deleteBeverage(int userId, int bevId) {
+		Optional<User> userOpt = uRepo.findById(userId);
+		if (userOpt.isPresent()) {
+			User user = userOpt.get();
+			Optional<Beverage> bev = bevRepo.findById(bevId);
+			if (bev.isPresent()) {
+				bevRepo.deleteById(bevId);
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

@@ -28,6 +28,7 @@ Access the REST API by the following route:
 | `List<Beverage>` |`GET api/beverages/caffeinated`| Get all beverages   |
 | `List<Beverage>` |`GET api/beverages/name/{keyword}`| Get all beverages by keyword search of name   |
 | `List<Beverage>` |`GET api/beverages/date/{date}`| Get all beverages by date (yyyy-MM-dd)   |
+| `List<User>` |`GET api/users`| Get all users   |
 
 ### Technologies used:
 

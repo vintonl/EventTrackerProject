@@ -24,4 +24,8 @@ public interface BeverageService {
 
 	List<Beverage> findByCreatedAt(String date);
 
+	Beverage createBeverage(int id, Beverage bev);
+
+	boolean deleteBeverage(int userId, int bevId);
+
 }
