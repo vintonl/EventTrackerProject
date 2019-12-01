@@ -73,7 +73,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventdb`;
-INSERT INTO `User` (`id`, `first_name`, `last_name`, `created_at`) VALUES (1, 'Test', 'Test', '2019-11-30');
+INSERT INTO `User` (`id`, `first_name`, `last_name`, `created_at`) VALUES (1, 'Bobby', 'Lee', '2019-11-30');
 
 COMMIT;
 
@@ -85,6 +85,9 @@ START TRANSACTION;
 USE `eventdb`;
 INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `user_id`, `caffeine`, `updated_at`, `created_at`) VALUES (1, 'water', 'H2O from the tap', 'water', DEFAULT, DEFAULT, 0, 8, DEFAULT, 1, DEFAULT, DEFAULT, '2019-11-30');
 INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `user_id`, `caffeine`, `updated_at`, `created_at`) VALUES (2, 'coffee', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 8, DEFAULT, 1, 95, DEFAULT, '2019-11-30');
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `user_id`, `caffeine`, `updated_at`, `created_at`) VALUES (3, 'Coke Zero', '12 oz can', 'Water, Colour (Caramel E150d), Phosphoric Acid, Sweeteners (Aspartame, Acesulfame K), Natural Flavourings Including Caffeine, Acidity Regulator (Sodium Citrate). Contains a Source of Phenylalanine', 1, DEFAULT, 0, 12, DEFAULT, 1, 34, DEFAULT, '2019-11-30');
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `user_id`, `caffeine`, `updated_at`, `created_at`) VALUES (4, 'double espresso shot', 'brewed fresh', 'water and coffee', 1, DEFAULT, 0, 2, DEFAULT, 1, 80, DEFAULT, '2019-11-30');
+INSERT INTO `beverage` (`id`, `name`, `description`, `ingredients`, `caffeinated`, `contains_alcohol`, `calories`, `volume`, `active`, `user_id`, `caffeine`, `updated_at`, `created_at`) VALUES (5, 'Starbucks Double Shot Energy + Coffee + Vanilla', 'We begin with rich Starbucks coffee, blended with milk for a creamy, delicious flavor. Then we enhance this premium coffee drink with ginseng, Guarani and B vitamins - a great-tasting way to help you own the day.', 'Starbucks Coffee (Water, Coffee), Reduced-Fat Milk, Skim Milk, Sugar, Maltodextrin, Dextrose, Taurine, Cellulose Gel, Natural Flavor, Panax Ginseng Root Extract, Inositol, Sodium Ascorbate, Guarana (Paullinia Cupana) Seed Extract, Cellulose Gum, Niacinamide, Sucralose, Ascorbic Acid (Vitamin C), Tricalcium Phosphate, Pyridoxine Hydrochloride (Vitamin B6), Riboflavin, Vitamin A Palmitate, Vitamin D3.', 1, DEFAULT, DEFAULT, 15, DEFAULT, 1, 145, DEFAULT, '2019-11-30');
 
 COMMIT;
 
