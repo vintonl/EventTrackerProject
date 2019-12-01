@@ -10,4 +10,6 @@ public interface UserService {
 
 	User createUser(User newUser);
 
+	User updateUser(int id, User user);
+
 }
