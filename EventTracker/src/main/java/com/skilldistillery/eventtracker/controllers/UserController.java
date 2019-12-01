@@ -61,19 +61,24 @@ public class UserController {
 	@PostMapping("users/{id}/beverages")
 	public Beverage createBeverage(@PathVariable int id, @RequestBody Beverage bev, HttpServletRequest req,
 			HttpServletResponse resp) {
+		Beverage bevCreated = null;
+		try {
+			bevCreated = bevSvc.createBeverage(id, bev);
 
-		Beverage commentCreated = bevSvc.createBeverage(id, bev);
+			if (bevCreated == null) {
+				resp.setStatus(404);
+			}
 
-		if (commentCreated == null) {
-			resp.setStatus(404);
+			resp.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(bevCreated.getId());
+			resp.addHeader("Location", url.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
 		}
 
-		resp.setStatus(201);
-		StringBuffer url = req.getRequestURL();
-		url.append("/").append(commentCreated.getId());
-		resp.addHeader("Location", url.toString());
-
-		return commentCreated;
+		return bevCreated;
 	}
 
 	@DeleteMapping("users/{userId}/beverages/{bevId}")

@@ -1,9 +1,7 @@
 package com.skilldistillery.eventtracker.services;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -50,14 +48,14 @@ public class BeverageServiceImpl implements BeverageService {
 	}
 
 	@Override
-	public Beverage updateBeverage(int id, Beverage bev) {
+	public Beverage updateBeverage(int id, Beverage bev) throws Exception {
+		if (!bev.isCaffeinated() && bev.getCaffeine() > 0) {
+			throw new Exception();
+		}
+
 		Optional<Beverage> bevOpt = bevRepo.findById(id);
 		if (bevOpt.isPresent()) {
 			Beverage managedBev = bevOpt.get();
-			if (!bev.isCaffeinated() && bev.getCaffeine() > 0) {
-				return null;
-			}
-
 			managedBev.setName(bev.getName());
 			managedBev.setDescription(bev.getDescription());
 			managedBev.setIngredients(bev.getIngredients());
@@ -74,7 +72,6 @@ public class BeverageServiceImpl implements BeverageService {
 			} else {
 				managedBev.setCreatedAt(bev.getCreatedAt());
 			}
-
 			return managedBev;
 		}
 
@@ -116,32 +113,32 @@ public class BeverageServiceImpl implements BeverageService {
 			date = new SimpleDateFormat("yyyy-MM-dd").parse(dateStr);
 		} catch (ParseException e) {
 			e.printStackTrace();
+			return null;
 		}
 
 		return bevRepo.findByCreatedAtBetween(date, date);
 	}
 
 	@Override
-	public Beverage createBeverage(int id, Beverage bev) {
+	public Beverage createBeverage(int id, Beverage bev) throws Exception {
+		if (!bev.isCaffeinated() && bev.getCaffeine() > 0) {
+			throw new Exception("Beverage can not contain caffine and Caffeinated be false.");
+		}
 
 		Optional<User> userOpt = uRepo.findById(id);
 		if (userOpt.isPresent()) {
 			User user = userOpt.get();
 			bev.setUser(user);
-			if (!bev.isCaffeinated() && bev.getCaffeine() > 0) {
-				return null;
-			}
 			return bevRepo.saveAndFlush(bev);
 		}
 
-		return bev;
+		return null;
 	}
 
 	@Override
 	public boolean deleteBeverage(int userId, int bevId) {
 		Optional<User> userOpt = uRepo.findById(userId);
 		if (userOpt.isPresent()) {
-			User user = userOpt.get();
 			Optional<Beverage> bev = bevRepo.findById(bevId);
 			if (bev.isPresent()) {
 				bevRepo.deleteById(bevId);

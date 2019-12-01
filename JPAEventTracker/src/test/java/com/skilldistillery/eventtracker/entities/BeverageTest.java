@@ -58,7 +58,7 @@ class BeverageTest {
 		assertTrue(bev.getCreatedAt().toString().contains("2019"));
 		assertTrue(bev.getUpdatedAt().toString().contains("2019"));
 	}
-	
+
 	@Test
 	@DisplayName("Test relationship with beverage tracker")
 	void test1() {

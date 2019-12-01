@@ -49,7 +49,7 @@ class UserTest {
 		assertEquals("Lee", user.getLastName());
 		assertTrue(user.getCreatedAt().toString().contains("2019"));
 	}
-	
+
 	@Test
 	@DisplayName("Test relationship with beverage")
 	void test1() {

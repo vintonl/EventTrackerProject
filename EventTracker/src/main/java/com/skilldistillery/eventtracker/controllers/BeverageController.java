@@ -124,12 +124,12 @@ public class BeverageController {
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(bev.getId());
 			resp.addHeader("Location", url.toString());
+			return bev;
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);
-			return null;
 		}
-		return bev;
+		return null;
 	}
 
 	@PutMapping("beverages/{id}")

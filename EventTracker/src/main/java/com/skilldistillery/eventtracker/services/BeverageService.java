@@ -1,6 +1,5 @@
 package com.skilldistillery.eventtracker.services;
 
-import java.util.Date;
 import java.util.List;
 
 import com.skilldistillery.eventtracker.entities.Beverage;
@@ -12,7 +11,7 @@ public interface BeverageService {
 
 	Beverage createBeverage(Beverage bev);
 
-	Beverage updateBeverage(int id, Beverage bev);
+	Beverage updateBeverage(int id, Beverage bev) throws Exception;
 
 	boolean deleteBeverage(int id);
 
@@ -24,7 +23,7 @@ public interface BeverageService {
 
 	List<Beverage> findByCreatedAt(String date);
 
-	Beverage createBeverage(int id, Beverage bev);
+	Beverage createBeverage(int id, Beverage bev) throws Exception;
 
 	boolean deleteBeverage(int userId, int bevId);
 

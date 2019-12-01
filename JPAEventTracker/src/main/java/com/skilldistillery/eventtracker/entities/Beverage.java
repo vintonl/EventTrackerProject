@@ -1,6 +1,5 @@
 package com.skilldistillery.eventtracker.entities;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
