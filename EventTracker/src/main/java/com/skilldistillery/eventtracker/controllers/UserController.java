@@ -80,12 +80,17 @@ public class UserController {
 	public void deleteComment(@PathVariable int userId, @PathVariable int bevId, HttpServletRequest req,
 			HttpServletResponse resp) {
 
-		boolean bevDeleted = bevSvc.deleteBeverage(userId, bevId);
+		try {
+			boolean bevDeleted = bevSvc.deleteBeverage(userId, bevId);
 
-		if (!bevDeleted) {
-			resp.setStatus(404);
-		} else {
-			resp.setStatus(202);
+			if (!bevDeleted) {
+				resp.setStatus(404);
+			} else {
+				resp.setStatus(204);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
 		}
 
 	}
