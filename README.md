@@ -43,21 +43,21 @@ Java, Java Persistence API, REST API, Spring Boot, Gradle, MySQL Workbench, Post
 
 ### Topics implemented:
 
-Spring REST annotations.
+-   Spring REST annotations.
 
-Spring Data JPA to perform all CRUD operations.
+-   Spring Data JPA to perform all CRUD operations.
 
-Send and receive JSON.
+-   Send and receive JSON.
 
-Tomcat 8 on AWS EC2 Instance.
+-   Tomcat 8 on AWS EC2 Instance.
 
-Object-Relational Mapping (ORM).
+-   Object-Relational Mapping (ORM).
 
-Relational Database: SQL Database creation using MySQL Workbench.
+-   Relational Database: SQL Database creation using MySQL Workbench.
 
-Object-Oriented Programming in Java: Abstraction, Polymorphism, Inheritance, and Encapsulation.
+-   Object-Oriented Programming in Java: Abstraction, Polymorphism, Inheritance, and Encapsulation.
 
-Test Driven Development using JUNIT Juniper.
+-   Test Driven Development using JUNIT Juniper.
 
 ### Lessons learned:
 
