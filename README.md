@@ -16,7 +16,7 @@ This program is designed to be a REST API that creates, reads, updates and delet
 
 ### How to run:
 
-Access the REST API by the following routes:
+Access the REST API by the following routes at [BeverageTracker](http://3.132.229.160:8080/EventTracker/):
 
 ### Routes
 
