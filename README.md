@@ -1,8 +1,8 @@
 # Beverage Tracker
 
-## JPA Full Stack Midterm Project
+## REST API Weekend Project
 
-### Week 12 Project at Skill Distillery - November 30, 2019
+### Week 12 at Skill Distillery - November 30, 2019
 
 Built by:
 
