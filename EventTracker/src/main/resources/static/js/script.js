@@ -153,12 +153,12 @@ function displayBev(bev) {
 	dataDiv.appendChild(li4);
 	dataDiv.appendChild(ul);
 
-	// this creates a butt'n
+	// this creates a button
 	let editButton = document.createElement('button');
 	editButton.innerHTML = "Edit Beverage";
 	dataDiv.appendChild(editButton);
 
-	// this adds functionality to the butt'n
+	// this adds functionality to the button
 	editButton.addEventListener('click', function(e) {
 		e.preventDefault();
 		showUpdateForm(bev);
@@ -167,4 +167,147 @@ function displayBev(bev) {
 	let hr = document.createElement('hr');
 	dataDiv.appendChild(hr);
 
+}
+
+function showUpdateForm(bev) {
+	console.log("showUpdateForm " + bev.name);
+	var dataDiv = document.getElementById('editBev');
+	dataDiv.textContent = '';
+
+	let form = document.createElement('form');
+	dataDiv.appendChild(form);
+	form.name = "editForm";
+
+	let nameText = document.createElement('lable');
+	nameText.textContent = 'Name: '
+	form.appendChild(nameText);
+	
+	let inputName = document.createElement('input');
+	inputName.type = 'text';
+	inputName.name = 'name';
+	inputName.value = bev.name;
+	form.appendChild(inputName);
+	
+	let br = document.createElement('br');
+	form.appendChild(br);
+	
+	let nameDescription = document.createElement('lable');
+	nameDescription.textContent = 'Description: '
+	form.appendChild(nameDescription);
+	
+	let inputDescription = document.createElement('input');
+	inputDescription.type = 'text';
+	inputDescription.name = 'description';
+	inputDescription.value = bev.description;
+	form.appendChild(inputDescription);
+	
+	let br1 = document.createElement('br');
+	form.appendChild(br1);
+	
+	let nameIngredients = document.createElement('lable');
+	nameIngredients.textContent = 'Ingredients: '
+	form.appendChild(nameIngredients);
+	
+	let inputIngredients = document.createElement('input');
+	inputIngredients.type = 'text';
+	inputIngredients.name = 'ingredients';
+	inputIngredients.value = bev.ingredients;
+	form.appendChild(inputIngredients);
+	
+	let br2 = document.createElement('br');
+	form.appendChild(br2);
+	
+//	let inputCaffeinated = document.createElement('input');
+//	inputCaffeinated.type = 'radio';
+//	inputCaffeinated.name = 'caffeinated';
+//	inputCaffeinated.value = true;
+//	form.appendChild(inputCaffeinated);
+//	
+//	let br3 = document.createElement('br');
+//	form.appendChild(br3);
+//	
+//	let inputCaffeinatedFalse = document.createElement('input');
+//	inputCaffeinatedFalse.type = 'radio';
+//	inputCaffeinatedFalse.name = 'caffeinated';
+//	inputCaffeinatedFalse.value = false;
+//	inputCaffeinatedFalse.textContent = 'Caffeine-Free';
+//	form.appendChild(inputCaffeinatedFalse);
+//	
+//	let br4 = document.createElement('br');
+//	form.appendChild(br4);
+	
+	let nameCaffeine = document.createElement('lable');
+	nameCaffeine.textContent = 'Caffeine: '
+	form.appendChild(nameCaffeine);
+	
+	let inputCaffeine = document.createElement('input');
+	inputCaffeine.type = 'number';
+	inputCaffeine.name = 'caffeine';
+	inputCaffeine.value = bev.caffeine;
+	form.appendChild(inputCaffeine);
+	
+	let br5 = document.createElement('br');
+	form.appendChild(br5);
+	
+	let nameCalories = document.createElement('lable');
+	nameCalories.textContent = 'Calories: '
+	form.appendChild(nameCalories);
+	
+	let inputCalories = document.createElement('input');
+	inputCalories.type = 'number';
+	inputCalories.name = 'calories';
+	inputCalories.value = bev.caffeine;
+	form.appendChild(inputCalories);
+	
+	let br6 = document.createElement('br');
+	form.appendChild(br6);
+	
+	let nameVolume = document.createElement('lable');
+	nameVolume.textContent = 'Volume: '
+	form.appendChild(nameVolume);
+	
+	let inputVolume = document.createElement('input');
+	inputVolume.type = 'number';
+	inputVolume.name = 'volume';
+	inputVolume.value = bev.caffeine;
+	form.appendChild(inputVolume);
+	
+	// this creates a button
+	let editButton = document.createElement('button');
+	editButton.innerHTML = "Submit Edited Beverage";
+	dataDiv.appendChild(editButton);
+
+	// this adds functionality to the button
+	editButton.addEventListener('click', function(e) {
+		e.preventDefault();
+		updateBev(bev);
+	});
+	
+	let br7 = document.createElement('br');
+	dataDiv.appendChild(br7);
+	let br8 = document.createElement('br');
+	dataDiv.appendChild(br8);
+	
+	// this creates a button
+	let deleteButton = document.createElement('button');
+	deleteButton.innerHTML = "Delete this Beverage";
+	dataDiv.appendChild(deleteButton);
+	
+	// this adds functionality to the button
+	deleteButton.addEventListener('click', function(e) {
+		e.preventDefault();
+		deleteBev(bev);
+	});
+	
+
+	let hr = document.createElement('hr');
+	dataDiv.appendChild(hr);
+}
+
+function updateBev(bev) {
+	console.log('updateBev: ' + bev.name)
+}
+
+function deleteBev(bev) {
+	console.log('deleteBev: ' + bev.name)
 }
