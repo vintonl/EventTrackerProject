@@ -20,14 +20,14 @@
     <br>
    	<div>
 			<form name="addBev">
-				<input type="text" name="name" placeholder="name"> <br> 
-				<input type="text" name="description" placeholder="description" > <br> 
-					<input type="text" name="ingredients" placeholder="ingredients"> <br> 
+				<input type="text" name="name" placeholder="name" required minlength="1"> <br> 
+				<input type="text" name="description" placeholder="description" required minlength="1"> <br> 
+					<input type="text" name="ingredients" placeholder="ingredients" required > <br> 
 					<input type="radio" name="caffeinated" value="true"> Caffeinated<br>
   					<input type="radio" name="caffeinated" value="false" checked> Caffeine-Free<br>
-					<input type="number" name="caffeine" placeholder="caffeine" default="0"> <br> 
-					<input type="number" name="calories" placeholder="calories" default="0"> <br>
-					<input type="number" name="volume" placeholder="volume" default="0">
+					<input type="number" name="caffeine" placeholder="caffeine" default="0" required min="0" > <br> 
+					<input type="number" name="calories" placeholder="calories" default="0" required min="0"> <br>
+					<input type="number" name="volume" placeholder="volume" default="0" required min="1">
 				<button name="add">Add a Beverage</button>
 			</form>
 	</div>
