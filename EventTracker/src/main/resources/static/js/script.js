@@ -171,141 +171,187 @@ function displayBev(bev) {
 
 function showUpdateForm(bev) {
 	console.log("showUpdateForm " + bev.name);
+	console.log(bev);
+
 	var dataDiv = document.getElementById('editBev');
 	dataDiv.textContent = '';
 
-	let form = document.createElement('form');
-	dataDiv.appendChild(form);
+	var form = document.createElement('form');
 	form.name = "editForm";
+	form.id = "editForm";
+	dataDiv.appendChild(form);
 
 	let nameText = document.createElement('lable');
 	nameText.textContent = 'Name: '
 	form.appendChild(nameText);
-	
-	let inputName = document.createElement('input');
+
+	var inputId = document.createElement('input');
+	inputId.type = 'hidden';
+	inputId.name = 'id';
+	inputId.value = bev.id;
+	form.appendChild(inputId);
+
+	var inputName = document.createElement('input');
 	inputName.type = 'text';
 	inputName.name = 'name';
 	inputName.value = bev.name;
 	form.appendChild(inputName);
-	
+
 	let br = document.createElement('br');
 	form.appendChild(br);
-	
-	let nameDescription = document.createElement('lable');
+
+	var nameDescription = document.createElement('lable');
 	nameDescription.textContent = 'Description: '
 	form.appendChild(nameDescription);
-	
+
 	let inputDescription = document.createElement('input');
 	inputDescription.type = 'text';
 	inputDescription.name = 'description';
 	inputDescription.value = bev.description;
 	form.appendChild(inputDescription);
-	
+
 	let br1 = document.createElement('br');
 	form.appendChild(br1);
-	
+
 	let nameIngredients = document.createElement('lable');
 	nameIngredients.textContent = 'Ingredients: '
 	form.appendChild(nameIngredients);
-	
+
 	let inputIngredients = document.createElement('input');
 	inputIngredients.type = 'text';
 	inputIngredients.name = 'ingredients';
 	inputIngredients.value = bev.ingredients;
 	form.appendChild(inputIngredients);
-	
+
 	let br2 = document.createElement('br');
 	form.appendChild(br2);
-	
-//	let inputCaffeinated = document.createElement('input');
-//	inputCaffeinated.type = 'radio';
-//	inputCaffeinated.name = 'caffeinated';
-//	inputCaffeinated.value = true;
-//	form.appendChild(inputCaffeinated);
-//	
-//	let br3 = document.createElement('br');
-//	form.appendChild(br3);
-//	
-//	let inputCaffeinatedFalse = document.createElement('input');
-//	inputCaffeinatedFalse.type = 'radio';
-//	inputCaffeinatedFalse.name = 'caffeinated';
-//	inputCaffeinatedFalse.value = false;
-//	inputCaffeinatedFalse.textContent = 'Caffeine-Free';
-//	form.appendChild(inputCaffeinatedFalse);
-//	
-//	let br4 = document.createElement('br');
-//	form.appendChild(br4);
-	
+
+	let inputCaffeinated = document.createElement('input');
+	inputCaffeinated.type = 'hidden';
+	inputCaffeinated.name = 'caffeinated';
+	inputCaffeinated.value = bev.caffeinated;
+	form.appendChild(inputCaffeinated);
+
 	let nameCaffeine = document.createElement('lable');
 	nameCaffeine.textContent = 'Caffeine: '
 	form.appendChild(nameCaffeine);
-	
+
 	let inputCaffeine = document.createElement('input');
 	inputCaffeine.type = 'number';
 	inputCaffeine.name = 'caffeine';
 	inputCaffeine.value = bev.caffeine;
 	form.appendChild(inputCaffeine);
-	
+
 	let br5 = document.createElement('br');
 	form.appendChild(br5);
-	
+
 	let nameCalories = document.createElement('lable');
 	nameCalories.textContent = 'Calories: '
 	form.appendChild(nameCalories);
-	
+
 	let inputCalories = document.createElement('input');
 	inputCalories.type = 'number';
 	inputCalories.name = 'calories';
 	inputCalories.value = bev.caffeine;
 	form.appendChild(inputCalories);
-	
+
 	let br6 = document.createElement('br');
 	form.appendChild(br6);
-	
+
 	let nameVolume = document.createElement('lable');
 	nameVolume.textContent = 'Volume: '
 	form.appendChild(nameVolume);
-	
+
 	let inputVolume = document.createElement('input');
 	inputVolume.type = 'number';
 	inputVolume.name = 'volume';
 	inputVolume.value = bev.caffeine;
 	form.appendChild(inputVolume);
-	
+
 	// this creates a button
 	let editButton = document.createElement('button');
 	editButton.innerHTML = "Submit Edited Beverage";
 	dataDiv.appendChild(editButton);
 
+	let editBev = document.getElementById('editForm');
+	console.log(editBev);
+
 	// this adds functionality to the button
 	editButton.addEventListener('click', function(e) {
 		e.preventDefault();
-		updateBev(bev);
+
+		let form = document.getElementById('editForm');
+		console.log(form);
+		let editedBev = {
+			id : form.id.value,
+			name : form.name.value,
+			description : form.description.value,
+			ingredients : form.ingredients.value,
+			caffeine : form.caffeine.value,
+			caffeinated : form.caffeinated.value,
+			containsAlcohol : false,
+			calories : form.calories.value,
+			volume : form.volume.value,
+			active : true
+		};
+
+		updateBev(editedBev);
 	});
-	
+
 	let br7 = document.createElement('br');
 	dataDiv.appendChild(br7);
 	let br8 = document.createElement('br');
 	dataDiv.appendChild(br8);
-	
-	// this creates a button
+
 	let deleteButton = document.createElement('button');
 	deleteButton.innerHTML = "Delete this Beverage";
 	dataDiv.appendChild(deleteButton);
-	
-	// this adds functionality to the button
+
 	deleteButton.addEventListener('click', function(e) {
 		e.preventDefault();
 		deleteBev(bev);
 	});
-	
 
 	let hr = document.createElement('hr');
 	dataDiv.appendChild(hr);
 }
 
 function updateBev(bev) {
-	console.log('updateBev: ' + bev.name)
+	console.log('updateBev ID: ' + bev.id)
+	console.log('updateBev Name: ' + bev.name)
+	// console.log('updateBev: ' + bev.name)
+	// console.log('updateBev: ' + bev.name)
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('PUT', 'http://localhost:8083/api/beverages/' + bev.id, true);
+
+	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
+	// request body
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status == 200 || xhr.status == 201 || xhr.status == 202) { // Ok,
+																				// Created,
+																				// or
+																				// Accepted
+				var data = JSON.parse(xhr.responseText);
+				console.log(data);
+				getAllBevs();
+			} else {
+				console.log("PUT request failed.");
+				console.error(xhr.status + ': ' + xhr.responseText);
+			}
+		}
+	};
+
+	var userObjectJson = JSON.stringify(bev); // Convert JS object to
+	// JSON string
+
+	xhr.send(userObjectJson);
+
+	console.log(userObjectJson);
+
+	getAllBevs();
 }
 
 function deleteBev(bev) {
