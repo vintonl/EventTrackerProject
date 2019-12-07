@@ -123,4 +123,48 @@ function addNewBeverage() {
 
 function displayBev(bev) {
 	console.log("displayBev " + bev.name);
+	var dataDiv = document.getElementById('oneBevData');
+	dataDiv.textContent = '';
+
+	let h1 = document.createElement('h1');
+	dataDiv.appendChild(h1);
+	h1.textContent = bev.name;
+
+	let descriptionP = document.createElement('p');
+	dataDiv.appendChild(descriptionP);
+	descriptionP.textContent = bev.description;
+
+	let ul = document.createElement('ul');
+	let li = document.createElement('li');
+	li.textContent = "Ingredients: " + bev.ingredients;
+	let li1 = document.createElement('li');
+	li1.textContent = "Caffeine: " + bev.caffeine + " mg";
+	let li2 = document.createElement('li');
+	li2.textContent = "Calories: " + bev.calories;
+	let li3 = document.createElement('li');
+	li3.textContent = "Volume: " + bev.volume + " ounces";
+	let li4 = document.createElement('li');
+	li4.textContent = "Date: " + bev.createdAt;
+
+	dataDiv.appendChild(li);
+	dataDiv.appendChild(li1);
+	dataDiv.appendChild(li2);
+	dataDiv.appendChild(li3);
+	dataDiv.appendChild(li4);
+	dataDiv.appendChild(ul);
+
+	// this creates a butt'n
+	let editButton = document.createElement('button');
+	editButton.innerHTML = "Edit Beverage";
+	dataDiv.appendChild(editButton);
+
+	// this adds functionality to the butt'n
+	editButton.addEventListener('click', function(e) {
+		e.preventDefault();
+		showUpdateForm(bev);
+	});
+
+	let hr = document.createElement('hr');
+	dataDiv.appendChild(hr);
+
 }
