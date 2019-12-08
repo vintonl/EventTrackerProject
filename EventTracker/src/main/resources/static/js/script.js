@@ -386,7 +386,7 @@ function getByDate() {
 
 	let bevDate = document.getElementById('getByDate')
 
-	xhr.open('GET', 'http://3.132.229.160:8080/EventTracker/api/beverages/'
+	xhr.open('GET', 'http://3.132.229.160:8080/EventTracker/api/beverages/date/'
 			+ bevDate.year.value + '-' + bevDate.month.value + '-'
 			+ bevDate.day.value, true);
 
