@@ -24,12 +24,10 @@ function init() {
 function getAllBevs() {
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('GET', 'http://localhost:8083/api/beverages',
-			true);
+	xhr.open('GET', 'http://localhost:8083/api/beverages', true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
-
 			var data = JSON.parse(xhr.responseText);
 			displayBeverages(data);
 		}
@@ -41,7 +39,6 @@ function getAllBevs() {
 			let h1 = document.createElement('h1');
 			dataDiv.appendChild(h1);
 			h1.textContent = "Beverages not found.";
-
 		}
 	};
 
@@ -77,11 +74,9 @@ function displayBeverages(bevs) {
 
 function addNewBeverage() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://localhost:8083/api/beverages',
-			true);
+	xhr.open('POST', 'http://localhost:8083/api/beverages', true);
 
-	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
-	// request body
+	xhr.setRequestHeader("Content-type", "application/json");
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
@@ -112,8 +107,7 @@ function addNewBeverage() {
 		}
 	};
 
-	var userObjectJson = JSON.stringify(newBevObject); // Convert JS object to
-	// JSON string
+	var userObjectJson = JSON.stringify(newBevObject);
 
 	xhr.send(userObjectJson);
 
@@ -263,21 +257,13 @@ function showUpdateForm(bev) {
 	inputVolume.name = 'volume';
 	inputVolume.value = bev.caffeine;
 	form.appendChild(inputVolume);
-	
-//	let inputCreatedAt = document.createElement('input');
-//	inputCreatedAt.type = 'hidden';
-//	inputCreatedAt.name = 'createdAt';
-//	inputCreatedAt.value = bev.createdAt;
-//	form.appendChild(inputCreatedAt);
 
-	// this creates a button
 	let editButton = document.createElement('button');
 	editButton.innerHTML = "Submit Edited Beverage";
 	dataDiv.appendChild(editButton);
 
 	let editBev = document.getElementById('editForm');
 
-	// this adds functionality to the button
 	editButton.addEventListener('click', function(e) {
 		e.preventDefault();
 
@@ -294,7 +280,6 @@ function showUpdateForm(bev) {
 			calories : form.calories.value,
 			volume : form.volume.value,
 			active : true,
-//			createdAt : form.createdAt.value,
 			user : {
 				id : 1,
 				firstName : "Bobby",
@@ -327,8 +312,7 @@ function showUpdateForm(bev) {
 function updateBev(bev) {
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'http://localhost:8083/api/beverages/'
-			+ bev.id, true);
+	xhr.open('PUT', 'http://localhost:8083/api/beverages/' + bev.id, true);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -364,8 +348,7 @@ function updateBev(bev) {
 function deleteBev(bev) {
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('DELETE', 'http://localhost:8083/api/beverages/'
-			+ bev.id, true);
+	xhr.open('DELETE', 'http://localhost:8083/api/beverages/' + bev.id, true);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -419,7 +402,6 @@ function getByDate() {
 			dataDiv.appendChild(h2);
 			h2.textContent = "No beverages found for: " + bevDate.year.value
 					+ '-' + bevDate.month.value + '-' + bevDate.day.value;
-
 		}
 	};
 
