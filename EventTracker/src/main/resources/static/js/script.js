@@ -4,13 +4,6 @@ window.addEventListener('load', function(e) {
 });
 
 function init() {
-	window.addEventListener('load', function(e) {
-		console.log('document loaded');
-		init();
-	});
-}
-
-function init() {
 	document.getAllButton.lookupAll.addEventListener('click', function(event) {
 		event.preventDefault();
 		getAllBevs();
@@ -354,6 +347,8 @@ function updateBev(bev) {
 	oneBevDiv.textContent = '';
 	var bevsDiv = document.getElementById('bevData');
 	bevsDiv.textContent = '';
+	var output = document.getElementById('bevDataDate');
+	output.textContent = '';
 }
 
 function deleteBev(bev) {
@@ -382,6 +377,8 @@ function deleteBev(bev) {
 	oneBevDiv.textContent = '';
 	var bevsDiv = document.getElementById('bevData');
 	bevsDiv.textContent = '';
+	var output = document.getElementById('bevDataDate');
+	output.textContent = '';
 }
 
 function getByDate() {
@@ -394,18 +391,19 @@ function getByDate() {
 			+ bevDate.day.value, true);
 
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4 && xhr.status < 400) {
+		if (xhr.readyState === 4 && xhr.status == 200) {
 			var data = JSON.parse(xhr.responseText);
 			displayBeveragesDay(data);
 		}
 
-		if (xhr.readyState === 4 && xhr.status >= 400) {
+		if (xhr.readyState === 4 && (xhr.status == 404 || xhr.status == 204 || xhr.status == 500 )) { 
 			console.error(xhr.status + ': ' + xhr.responseText);
 			var dataDiv = document.getElementById('bevDataDate');
 			dataDiv.textContent = '';
-			let h1 = document.createElement('h1');
-			dataDiv.appendChild(h1);
-			h1.textContent = "Beverages not found.";
+			let h2 = document.createElement('h2');
+			dataDiv.appendChild(h2);
+			h2.textContent = "No beverages found for: " + bevDate.year.value + '-' + bevDate.month.value + '-'
+			+ bevDate.day.value;
 
 		}
 	};
@@ -414,10 +412,16 @@ function getByDate() {
 }
 
 function displayBeveragesDay(data) {
-
+	var sumVolume= 0;
 	var sumCaffeine = 0;
+	var sumCalories = 0;
+	var count = 0;
+	
 	data.forEach(function(bev, index, arr) {
 		sumCaffeine += bev.caffeine;
+		sumVolume += bev.volume;
+		sumCalories += bev.calories;
+		count++;
 	});
 
 	var output = document.getElementById('bevDataDate');
@@ -428,7 +432,22 @@ function displayBeveragesDay(data) {
 	let hr = document.createElement('hr');
 	output.appendChild(hr);
 	let h2 = document.createElement('h2');
-	h2.textContent = 'Total Caffeine: ' + sumCaffeine + ' mg.';
+	h2.textContent = 'Totals for ' + data[0].createdAt;
 	output.appendChild(h2);
+	
+	let ul = document.createElement('ul');
+	output.appendChild(ul);
+	let li = document.createElement('li');
+	output.appendChild(li);
+	li.textContent = 'Caffeine: ' + sumCaffeine + ' mg';
+	let li1 = document.createElement('li');
+	output.appendChild(li1);
+	li1.textContent = 'Volume: ' + sumVolume + ' ounces';
+	let li2 = document.createElement('li');
+	output.appendChild(li2);
+	li2.textContent = 'Calories: ' + sumCalories;
+	let li3 = document.createElement('li');
+	output.appendChild(li3);
+	li3.textContent = 'Amount: ' + count;
 
 }
