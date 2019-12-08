@@ -24,7 +24,7 @@ function init() {
 function getAllBevs() {
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('GET', 'http://3.132.229.160:8080/EventTracker/api/beverages',
+	xhr.open('GET', 'http://localhost:8083/api/beverages',
 			true);
 
 	xhr.onreadystatechange = function() {
@@ -77,7 +77,7 @@ function displayBeverages(bevs) {
 
 function addNewBeverage() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'http://3.132.229.160:8080/EventTracker/api/beverages',
+	xhr.open('POST', 'http://localhost:8083/api/beverages',
 			true);
 
 	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
@@ -263,6 +263,12 @@ function showUpdateForm(bev) {
 	inputVolume.name = 'volume';
 	inputVolume.value = bev.caffeine;
 	form.appendChild(inputVolume);
+	
+//	let inputCreatedAt = document.createElement('input');
+//	inputCreatedAt.type = 'hidden';
+//	inputCreatedAt.name = 'createdAt';
+//	inputCreatedAt.value = bev.createdAt;
+//	form.appendChild(inputCreatedAt);
 
 	// this creates a button
 	let editButton = document.createElement('button');
@@ -288,6 +294,7 @@ function showUpdateForm(bev) {
 			calories : form.calories.value,
 			volume : form.volume.value,
 			active : true,
+//			createdAt : form.createdAt.value,
 			user : {
 				id : 1,
 				firstName : "Bobby",
@@ -320,7 +327,7 @@ function showUpdateForm(bev) {
 function updateBev(bev) {
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'http://3.132.229.160:8080/EventTracker/api/beverages/'
+	xhr.open('PUT', 'http://localhost:8083/api/beverages/'
 			+ bev.id, true);
 
 	xhr.setRequestHeader("Content-type", "application/json");
@@ -357,7 +364,7 @@ function updateBev(bev) {
 function deleteBev(bev) {
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('DELETE', 'http://3.132.229.160:8080/EventTracker/api/beverages/'
+	xhr.open('DELETE', 'http://localhost:8083/api/beverages/'
 			+ bev.id, true);
 
 	xhr.setRequestHeader("Content-type", "application/json");
@@ -390,8 +397,9 @@ function getByDate() {
 
 	let bevDate = document.getElementById('getByDate')
 
-	xhr.open('GET',
-			'http://3.132.229.160:8080/EventTracker/api/beverages/date/' + bevDate.year.value + '-' + bevDate.month.value + '-' + bevDate.day.value, true);
+	xhr.open('GET', 'http://localhost:8083/api/beverages/date/'
+			+ bevDate.year.value + '-' + bevDate.month.value + '-'
+			+ bevDate.day.value, true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status == 200) {
@@ -399,7 +407,7 @@ function getByDate() {
 			displayBeveragesDay(data);
 		}
 
-		if (xhr.readyState === 4 && xhr.status > 200) {
+		if (xhr.readyState === 4 && xhr.status >= 204) {
 			console.error(xhr.status + ': ' + xhr.responseText);
 			var dataDiv = document.getElementById('bevDataDate');
 			dataDiv.textContent = '';

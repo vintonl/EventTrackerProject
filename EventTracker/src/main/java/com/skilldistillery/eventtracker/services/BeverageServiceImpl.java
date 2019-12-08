@@ -74,12 +74,6 @@ public class BeverageServiceImpl implements BeverageService {
 				managedBev.setUser(user);
 			}
 
-			if (bev.getCreatedAt() == null) {
-				Date date = new Date();
-				managedBev.setCreatedAt(date);
-			} else {
-				managedBev.setCreatedAt(bev.getCreatedAt());
-			}
 			return bevRepo.saveAndFlush(managedBev);
 		}
 
