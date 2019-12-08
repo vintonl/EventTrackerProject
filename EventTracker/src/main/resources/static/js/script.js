@@ -396,14 +396,19 @@ function getByDate() {
 			displayBeveragesDay(data);
 		}
 
-		if (xhr.readyState === 4 && (xhr.status == 404 || xhr.status == 204 || xhr.status == 500 )) { 
+		if (xhr.readyState === 4
+				&& (xhr.status == 404 || xhr.status == 204 || xhr.status == 500)) {
 			console.error(xhr.status + ': ' + xhr.responseText);
 			var dataDiv = document.getElementById('bevDataDate');
 			dataDiv.textContent = '';
+			let br = document.createElement('br');
+			dataDiv.appendChild(br);
+			let hr = document.createElement('hr');
+			dataDiv.appendChild(hr);
 			let h2 = document.createElement('h2');
 			dataDiv.appendChild(h2);
-			h2.textContent = "No beverages found for: " + bevDate.year.value + '-' + bevDate.month.value + '-'
-			+ bevDate.day.value;
+			h2.textContent = "No beverages found for: " + bevDate.year.value
+					+ '-' + bevDate.month.value + '-' + bevDate.day.value;
 
 		}
 	};
@@ -412,11 +417,11 @@ function getByDate() {
 }
 
 function displayBeveragesDay(data) {
-	var sumVolume= 0;
+	var sumVolume = 0;
 	var sumCaffeine = 0;
 	var sumCalories = 0;
 	var count = 0;
-	
+
 	data.forEach(function(bev, index, arr) {
 		sumCaffeine += bev.caffeine;
 		sumVolume += bev.volume;
@@ -434,7 +439,7 @@ function displayBeveragesDay(data) {
 	let h2 = document.createElement('h2');
 	h2.textContent = 'Totals for ' + data[0].createdAt;
 	output.appendChild(h2);
-	
+
 	let ul = document.createElement('ul');
 	output.appendChild(ul);
 	let li = document.createElement('li');
