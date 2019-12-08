@@ -56,6 +56,7 @@ public class BeverageServiceImpl implements BeverageService {
 		Optional<Beverage> bevOpt = bevRepo.findById(id);
 		if (bevOpt.isPresent()) {
 			Beverage managedBev = bevOpt.get();
+			managedBev.setId(bev.getId());
 			managedBev.setName(bev.getName());
 			managedBev.setDescription(bev.getDescription());
 			managedBev.setIngredients(bev.getIngredients());
@@ -65,6 +66,14 @@ public class BeverageServiceImpl implements BeverageService {
 			managedBev.setCaffeinated(bev.isCaffeinated());
 			managedBev.setContainsAlcohol(bev.isContainsAlcohol());
 			managedBev.setActive(bev.isActive());
+			
+			if (bev.getUser().getId() > 1) {
+				managedBev.setUser(bev.getUser());
+			} else {
+				User user = uRepo.getOne(1);
+				managedBev.setUser(user);
+			}
+			
 
 			if (bev.getCreatedAt() == null) {
 				Date date = new Date();
@@ -72,7 +81,7 @@ public class BeverageServiceImpl implements BeverageService {
 			} else {
 				managedBev.setCreatedAt(bev.getCreatedAt());
 			}
-			return managedBev;
+			return bevRepo.saveAndFlush(managedBev);
 		}
 
 		return null;

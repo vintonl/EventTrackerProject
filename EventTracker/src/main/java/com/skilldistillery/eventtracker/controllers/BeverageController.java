@@ -135,22 +135,24 @@ public class BeverageController {
 	@PutMapping("beverages/{id}")
 	public Beverage replaceExistingBeverage(@RequestBody Beverage bev, @PathVariable int id, HttpServletRequest req,
 			HttpServletResponse resp) {
+		Beverage updatedBev = null;
+		
 		try {
-			bev = bevSvc.updateBeverage(id, bev);
-			if (bev == null) {
+			updatedBev = bevSvc.updateBeverage(id, bev);
+			if (updatedBev == null) {
 				resp.setStatus(404);
 				return null;
 			}
 			resp.setStatus(202);
 			StringBuffer url = req.getRequestURL();
-			url.append("/").append(bev.getId());
+			url.append("/").append(updatedBev.getId());
 			resp.addHeader("Location", url.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);
 			return null;
 		}
-		return bev;
+		return updatedBev;
 	}
 
 	@DeleteMapping("beverages/{id}")

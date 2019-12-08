@@ -292,7 +292,13 @@ function showUpdateForm(bev) {
 			containsAlcohol : false,
 			calories : form.calories.value,
 			volume : form.volume.value,
-			active : true
+			active : true,
+			user : {
+				id : 1,
+				firstName : "Bobby",
+				lastName : "Lee",
+				createdAt : "2019-11-30T07:00:00.000+0000"
+			}
 		};
 
 		updateBev(editedBev);
@@ -319,8 +325,14 @@ function showUpdateForm(bev) {
 function updateBev(bev) {
 	console.log('updateBev ID: ' + bev.id)
 	console.log('updateBev Name: ' + bev.name)
-	// console.log('updateBev: ' + bev.name)
-	// console.log('updateBev: ' + bev.name)
+	console.log('updateBev: ' + bev.description)
+	console.log('updateBev: ' + bev.ingredients)
+	console.log('updateBev: ' + bev.caffeinated)
+	console.log('updateBev: ' + bev.caffeine)
+	console.log('updateBev: ' + bev.containsAlcohol)
+	console.log('updateBev: ' + bev.calories)
+	console.log('updateBev: ' + bev.volume)
+	console.log('updateBev: ' + bev.active)
 
 	var xhr = new XMLHttpRequest();
 	xhr.open('PUT', 'http://localhost:8083/api/beverages/' + bev.id, true);
@@ -331,12 +343,11 @@ function updateBev(bev) {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status == 200 || xhr.status == 201 || xhr.status == 202) { // Ok,
-																				// Created,
-																				// or
-																				// Accepted
+				// Created,
+				// or
+				// Accepted
 				var data = JSON.parse(xhr.responseText);
 				console.log(data);
-				getAllBevs();
 			} else {
 				console.log("PUT request failed.");
 				console.error(xhr.status + ': ' + xhr.responseText);
@@ -349,8 +360,9 @@ function updateBev(bev) {
 
 	xhr.send(userObjectJson);
 
-	console.log(userObjectJson);
+	console.log("JSON string: " + userObjectJson);
 
+	displayBev(bev);
 	getAllBevs();
 }
 
