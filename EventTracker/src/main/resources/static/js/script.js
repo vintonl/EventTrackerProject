@@ -19,7 +19,11 @@ function init() {
 	document.addBev.add.addEventListener('click', function(event) {
 		event.preventDefault();
 		addNewBeverage();
+	})
 
+	document.getByDate.lookupByDate.addEventListener('click', function(event) {
+		event.preventDefault();
+		getByDate();
 	})
 
 }
@@ -277,7 +281,7 @@ function showUpdateForm(bev) {
 		e.preventDefault();
 
 		let form = document.getElementById('editForm');
-		console.log(form);
+
 		let editedBev = {
 			id : form.id.value,
 			name : form.name.value,
@@ -362,10 +366,7 @@ function deleteBev(bev) {
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
-			if (xhr.status == 204) { // No Content
-			// var data = JSON.parse(xhr.responseText);
-			// console.log(data);
-			} else {
+			if (xhr.status != 204) { // !No Content
 				console.log("DELETE request failed.");
 				console.error(xhr.status + ': ' + xhr.responseText);
 			}
@@ -382,4 +383,55 @@ function deleteBev(bev) {
 	oneBevDiv.textContent = '';
 	var bevsDiv = document.getElementById('bevData');
 	bevsDiv.textContent = '';
+}
+
+function getByDate() {
+	var xhr = new XMLHttpRequest();
+
+	let editBev = document.getElementById('getByDate')
+
+	xhr.open('GET', 'http://localhost:8083/api/beverages/date/'
+			+ editBev.year.value + '-' + editBev.month.value + '-'
+			+ editBev.day.value, true);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status < 400) {
+
+			var data = JSON.parse(xhr.responseText);
+			displayBeveragesDay(data);
+		}
+
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
+			var dataDiv = document.getElementById('bevDataDate');
+			dataDiv.textContent = '';
+			let h1 = document.createElement('h1');
+			dataDiv.appendChild(h1);
+			h1.textContent = "Beverages not found.";
+
+		}
+	};
+
+	xhr.send(null);
+}
+
+function displayBeveragesDay(data) {
+	console.log(data[1].caffeine);
+
+	var sumCaffeine = 0;
+	data.forEach(function(bev, index, arr) {
+		sumCaffeine += bev.caffeine;
+	});
+
+	var output = document.getElementById('bevDataDate');
+	output.textContent = '';
+
+	let br = document.createElement('br');
+	output.appendChild(br);
+	let hr = document.createElement('hr');
+	output.appendChild(hr);
+	let h2 = document.createElement('h2');
+	h2.textContent = 'Total Caffeine: ' + sumCaffeine + ' mg.';
+	output.appendChild(h2);
+
 }

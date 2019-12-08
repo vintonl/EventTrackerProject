@@ -1,40 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 
 <head>
   <meta charset="UTF-8">
   <title>Beverage Tracker</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script type="text/javascript" src="js/script.js"></script>
 </head>
 
 <body>
   <h1>Welcome to Beverage Tracker</h1>
   <div class="container">
-    <a href="/">Home</a> <br><br>
+    <a href="/">Home</a> <br> <br>
     <form name="getAllButton">
       <button name="lookupAll">Get All Beverages</button>
     </form>
+    <br>
+    <form name="getByDate" id="getByDate">
+      <input type="number" name="year" placeholder="year" required min="2019"><br> 
+      <input type="number" name="month" placeholder="month" required min="1" min="12"><br> 
+      <input type="number" name="day" placeholder="day" required min="1" min="31"><br>
+      <button name="lookupByDate">Get Caffeine Total by Day</button>
+    </form>
     <div id="output">
+      <div id="bevDataDate"></div>
       <div id="bevData"></div>
       <div id="oneBevData"></div>
       <div id="editBev"></div>
     </div>
     <br>
-   	<div>
-		<form name="addBev">
-			<input type="text" name="name" placeholder="name" required minlength="1"> <br> 
-			<input type="text" name="description" placeholder="description" required minlength="1"> <br> 
-			<input type="text" name="ingredients" placeholder="ingredients" required > <br> 
-			<input type="radio" name="caffeinated" value="true"> Caffeinated<br>
-  			<input type="radio" name="caffeinated" value="false" checked> Caffeine-Free<br>
-			<input type="number" name="caffeine" placeholder="caffeine" default="0" required min="0" > <br> 
-			<input type="number" name="calories" placeholder="calories" default="0" required min="0"> <br>
-			<input type="number" name="volume" placeholder="volume" default="0" required min="1">
-			<button name="add">Add a Beverage</button>
-		</form>
-	</div>
+    <div>
+      <form name="addBev">
+        <input type="text" name="name" placeholder="name" required minlength="1"> <br> 
+        <input type="text" name="description" placeholder="description" required minlength="1">
+        <br> <input type="text" name="ingredients" placeholder="ingredients" required> <br>
+        <input type="radio" name="caffeinated" value="true">Caffeinated<br>
+        <input type="radio" name="caffeinated" value="false" checked>Caffeine-Free<br> 
+        <input type="number" name="caffeine" placeholder="caffeine" default="0" required min="0"> <br>
+        <input type="number" name="calories" placeholder="calories" default="0" required min="0"> <br> 
+        <input type="number" name="volume" placeholder="volume" default="0" required min="1">
+        <button name="add">Add a Beverage</button>
+      </form>
+    </div>
   </div>
-<br><br><br>
+  <br>
+  <br>
+  <br>
 </body>
 
 </html>
