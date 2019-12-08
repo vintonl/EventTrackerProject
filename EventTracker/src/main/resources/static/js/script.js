@@ -33,7 +33,6 @@ function getAllBevs() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 
 			var data = JSON.parse(xhr.responseText);
-			console.log(data);
 			displayBeverages(data);
 		}
 
@@ -122,7 +121,7 @@ function addNewBeverage() {
 }
 
 function displayBev(bev) {
-	console.log("displayBev " + bev.name);
+
 	var dataDiv = document.getElementById('oneBevData');
 	dataDiv.textContent = '';
 
@@ -170,8 +169,6 @@ function displayBev(bev) {
 }
 
 function showUpdateForm(bev) {
-	console.log("showUpdateForm " + bev.name);
-	console.log(bev);
 
 	var dataDiv = document.getElementById('editBev');
 	dataDiv.textContent = '';
@@ -274,7 +271,6 @@ function showUpdateForm(bev) {
 	dataDiv.appendChild(editButton);
 
 	let editBev = document.getElementById('editForm');
-	console.log(editBev);
 
 	// this adds functionality to the button
 	editButton.addEventListener('click', function(e) {
@@ -323,16 +319,6 @@ function showUpdateForm(bev) {
 }
 
 function updateBev(bev) {
-	console.log('updateBev ID: ' + bev.id)
-	console.log('updateBev Name: ' + bev.name)
-	console.log('updateBev: ' + bev.description)
-	console.log('updateBev: ' + bev.ingredients)
-	console.log('updateBev: ' + bev.caffeinated)
-	console.log('updateBev: ' + bev.caffeine)
-	console.log('updateBev: ' + bev.containsAlcohol)
-	console.log('updateBev: ' + bev.calories)
-	console.log('updateBev: ' + bev.volume)
-	console.log('updateBev: ' + bev.active)
 
 	var xhr = new XMLHttpRequest();
 	xhr.open('PUT', 'http://localhost:8083/api/beverages/' + bev.id, true);
@@ -355,17 +341,45 @@ function updateBev(bev) {
 		}
 	};
 
-	var userObjectJson = JSON.stringify(bev); // Convert JS object to
-	// JSON string
+	var userObjectJson = JSON.stringify(bev);
 
 	xhr.send(userObjectJson);
 
-	console.log("JSON string: " + userObjectJson);
-
-	displayBev(bev);
-	getAllBevs();
+	var editDiv = document.getElementById('editBev');
+	editDiv.textContent = '';
+	var oneBevDiv = document.getElementById('oneBevData');
+	oneBevDiv.textContent = '';
+	var bevsDiv = document.getElementById('bevData');
+	bevsDiv.textContent = '';
 }
 
 function deleteBev(bev) {
-	console.log('deleteBev: ' + bev.name)
+
+	var xhr = new XMLHttpRequest();
+	xhr.open('DELETE', 'http://localhost:8083/api/beverages/' + bev.id, true);
+
+	xhr.setRequestHeader("Content-type", "application/json");
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status == 204) { // No Content
+			// var data = JSON.parse(xhr.responseText);
+			// console.log(data);
+			} else {
+				console.log("DELETE request failed.");
+				console.error(xhr.status + ': ' + xhr.responseText);
+			}
+		}
+	};
+
+	var userObjectJson = JSON.stringify(bev);
+
+	xhr.send(userObjectJson);
+
+	var editDiv = document.getElementById('editBev');
+	editDiv.textContent = '';
+	var oneBevDiv = document.getElementById('oneBevData');
+	oneBevDiv.textContent = '';
+	var bevsDiv = document.getElementById('bevData');
+	bevsDiv.textContent = '';
 }
