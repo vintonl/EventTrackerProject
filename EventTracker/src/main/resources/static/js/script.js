@@ -327,8 +327,7 @@ function updateBev(bev) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('PUT', 'http://localhost:8083/api/beverages/' + bev.id, true);
 
-	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
-	// request body
+	xhr.setRequestHeader("Content-type", "application/json");
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
@@ -388,15 +387,14 @@ function deleteBev(bev) {
 function getByDate() {
 	var xhr = new XMLHttpRequest();
 
-	let editBev = document.getElementById('getByDate')
+	let bevDate = document.getElementById('getByDate')
 
 	xhr.open('GET', 'http://localhost:8083/api/beverages/date/'
-			+ editBev.year.value + '-' + editBev.month.value + '-'
-			+ editBev.day.value, true);
+			+ bevDate.year.value + '-' + bevDate.month.value + '-'
+			+ bevDate.day.value, true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
-
 			var data = JSON.parse(xhr.responseText);
 			displayBeveragesDay(data);
 		}
@@ -416,7 +414,6 @@ function getByDate() {
 }
 
 function displayBeveragesDay(data) {
-	console.log(data[1].caffeine);
 
 	var sumCaffeine = 0;
 	data.forEach(function(bev, index, arr) {

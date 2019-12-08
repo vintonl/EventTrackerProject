@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Beverage Tracker</title>
+<!--   <link rel="stylesheet" href="<c:url value="css/main.css"> -->
+  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script type="text/javascript" src="js/script.js"></script>
 </head>
@@ -21,7 +23,7 @@
       <input type="number" name="year" placeholder="year" required min="2019"><br> 
       <input type="number" name="month" placeholder="month" required min="1" min="12"><br> 
       <input type="number" name="day" placeholder="day" required min="1" min="31"><br>
-      <button name="lookupByDate">Get Caffeine Total by Day</button>
+      <button name="lookupByDate">Get Beverage Totals by Day</button>
     </form>
     <div id="output">
       <div id="bevDataDate"></div>
@@ -39,7 +41,7 @@
         <input type="radio" name="caffeinated" value="false" checked>Caffeine-Free<br> 
         <input type="number" name="caffeine" placeholder="caffeine" default="0" required min="0"> <br>
         <input type="number" name="calories" placeholder="calories" default="0" required min="0"> <br> 
-        <input type="number" name="volume" placeholder="volume" default="0" required min="1">
+        <input type="number" name="volume" placeholder="volume" default="0" required min="1"> <br>
         <button name="add">Add a Beverage</button>
       </form>
     </div>
