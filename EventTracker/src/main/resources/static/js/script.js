@@ -25,7 +25,7 @@ function getAllBevs() {
 	var xhr = new XMLHttpRequest();
 
 //	xhr.open('GET', 'http://localhost:8083/api/beverages', true);
-	xhr.open('GET', 'http://3.132.229.160:8080/EventTracker', true);
+	xhr.open('GET', 'http://3.132.229.160:8080/EventTracker/api/beverages', true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
@@ -77,7 +77,7 @@ function addNewBeverage() {
 	var xhr = new XMLHttpRequest();
 	
 //	xhr.open('POST', 'http://localhost:8083/api/beverages', true);
-	xhr.open('POST', 'http://3.132.229.160:8080/EventTracker', true);
+	xhr.open('POST', 'http://3.132.229.160:8080/EventTracker/api/beverages', true);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -316,7 +316,7 @@ function updateBev(bev) {
 
 	var xhr = new XMLHttpRequest();
 //	xhr.open('PUT', 'http://localhost:8083/api/beverages/' + bev.id, true);
-	xhr.open('PUT', 'http://3.132.229.160:8080/EventTracker/' + bev.id, true);
+	xhr.open('PUT', 'http://3.132.229.160:8080/EventTracker/api/beverages/' + bev.id, true);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -353,7 +353,7 @@ function deleteBev(bev) {
 
 	var xhr = new XMLHttpRequest();
 //	xhr.open('DELETE', 'http://localhost:8083/api/beverages/' + bev.id, true);
-	xhr.open('DELETE', 'http://3.132.229.160:8080/EventTracker/' + bev.id, true);
+	xhr.open('DELETE', 'http://3.132.229.160:8080/EventTracker/api/beverages/' + bev.id, true);
 
 	xhr.setRequestHeader("Content-type", "application/json");
 
@@ -388,7 +388,7 @@ function getByDate() {
 //	xhr.open('GET', 'http://localhost:8083/api/beverages/date/'
 //			+ bevDate.year.value + '/' + bevDate.month.value + '/'
 //			+ bevDate.day.value, true);
-	xhr.open('GET', 'http://3.132.229.160:8080/EventTracker/date/'
+	xhr.open('GET', 'http://3.132.229.160:8080/EventTracker/api/beverages/date/'
 			+ bevDate.year.value + '/' + bevDate.month.value + '/'
 			+ bevDate.day.value, true);
 
