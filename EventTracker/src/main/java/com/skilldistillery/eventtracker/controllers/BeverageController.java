@@ -115,21 +115,22 @@ public class BeverageController {
 
 		return bevs;
 	}
-	
+
 	@GetMapping("beverages/date/{year}/{month}/{day}")
-	public List<Beverage> searchByDateInt(@PathVariable int year,@PathVariable int month,@PathVariable int day, HttpServletRequest req, HttpServletResponse resp) {
+	public List<Beverage> searchByDateInt(@PathVariable int year, @PathVariable int month, @PathVariable int day,
+			HttpServletRequest req, HttpServletResponse resp) {
 		String date = year + "-" + month + "-" + day;
-		
+
 		List<Beverage> bevs = bevSvc.findByCreatedAt(date);
-		
+
 		if (bevs == null) {
 			resp.setStatus(404);
 		}
-		
+
 		if (bevs.size() == 0) {
 			resp.setStatus(204);
 		}
-		
+
 		return bevs;
 	}
 
@@ -153,7 +154,7 @@ public class BeverageController {
 	public Beverage replaceExistingBeverage(@RequestBody Beverage bev, @PathVariable int id, HttpServletRequest req,
 			HttpServletResponse resp) {
 		Beverage updatedBev = null;
-		
+
 		try {
 			updatedBev = bevSvc.updateBeverage(id, bev);
 			if (updatedBev == null) {
