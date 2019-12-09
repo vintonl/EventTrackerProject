@@ -445,6 +445,6 @@ function displayBeveragesDay(data) {
 	li2.textContent = 'Calories: ' + sumCalories;
 	let li3 = document.createElement('li');
 	output.appendChild(li3);
-	li3.textContent = 'Amount: ' + count;
+	li3.textContent = 'Beverage count: ' + count;
 
 }
