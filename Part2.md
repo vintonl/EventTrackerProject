@@ -1,6 +1,6 @@
 # Beverage Tracker
 
-## REST API Weekend Project
+## JavaScript Weekend Project
 
 ### Week 13 at Skill Distillery - December 9, 2019
 
