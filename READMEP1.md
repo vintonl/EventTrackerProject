@@ -1,16 +1,16 @@
 # Beverage Tracker
 
-## Two Part Weekend Project
+## REST API Weekend Project
 
-### Week 12 & 13 at Skill Distillery
+### Week 12 at Skill Distillery - November 30, 2019
 
 Built by:
 
--   [Vinton Lee](http://vintonlee.dev)
+-   [Vinton Lee](https://github.com/vintonl)
 
 This was a weekend project to exceed the minimum viable product for our Event Tracker [assignment](https://github.com/vintonl/EventTrackerProject/blob/master/Assignment.md).
 
-### [Part 1 Overview:](https://github.com/vintonl)
+### Overview:
 
 This program is designed to be a REST API that creates, reads, updates and deletes user and beverage data from a database built using MySQL Workbench and connecting with using Spring Data JPA.
 
