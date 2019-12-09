@@ -2,7 +2,7 @@
 
 ## REST API Weekend Project
 
-### Week 12 at Skill Distillery - November 30, 2019
+### Week 13 at Skill Distillery - December 9, 2019
 
 Built by:
 
