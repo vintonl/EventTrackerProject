@@ -1,27 +1,83 @@
 <div *ngIf="!selected">
+  <br>
   <table class="table table-primary table-bordered">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Caffeine</th>
+        <th scope="col">Caffeine (mg)</th>
         <th scope="col">Calories</th>
-        <!-- <th scope="col">Completed Date</th>
-        <th scope="col">Delete</th> -->
+        <th scope="col">Volume (ounces)</th>
+        <th scope="col">Date Consumed</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of bevs">
-        <td scope="row" (click)="displayBev(item)">{{item.name}}</td>
-        <!-- <td>
-          <input class="form-control" type="checkbox" name="mark" id="" [(ngModel)]="item.completed"
-            (change)="editComplete(item)">
-        </td> -->
+        <td scope="row" (click)="displayBev(item)">{{item.name | titlecase }}</td>
         <td>{{item.caffeine}}</td>
         <td>{{item.calories}}</td>
-        <!-- <td>
-          <input type="submit" value="X" (click)="deleteTodo(item.id)" class="btn btn-danger btn-sm" />
-        </td> -->
+        <td>{{item.volume}}</td>
+        <td>{{item.createdAt | date:'shortDate'}}</td>
+
       </tr>
     </tbody>
   </table>
 </div>
+
+<div *ngIf="selected">
+  <br>
+  <ul class="list-group">
+    <li class="list-group-item active">Id: {{selected.id}}</li>
+    <li class="list-group-item ">Name: {{selected.name | titlecase }}</li>
+    <li class="list-group-item"
+      *ngIf="this.selected && this.selected.description && this.selected.description.length > 0">Description:
+      {{selected.description}}</li>
+    <li class="list-group-item ">Caffeinated: {{selected.caffeinated}}</li>
+    <li class="list-group-item ">Caffeine: {{selected.caffeine}} mg</li>
+    <li class="list-group-item ">Calories: {{selected.calories}}</li>
+    <li class="list-group-item ">Volume: {{selected.volume}} ounces</li>
+    <li class="list-group-item">Date Consumed: {{selected.createdAt | date:'fullDate'}}</li>
+    <li class="list-group-item">Date Last Updated: {{selected.updatedAt | date:'fullDate'}}</li>
+  </ul>
+  <br>
+  <span>
+    <button (click)="setEditBev()" class="btn btn-outline-success">Edit</button>
+    <button (click)="selected=null; editBev=null" class="btn btn-outline-danger">Back</button>
+  </span>
+</div>
+
+<div *ngIf="editBev != undefined" class="form-group">
+  <br>
+  <form #editForm="ngForm">
+    <h2>Beverage Id: {{editBev.id}}</h2>
+    <label for="task">Name:
+      <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="editBev.name" />
+    </label>
+    <br>
+    <label for="description">Description:
+      <input class="form-control" type="text" name="description" placeholder="Description"
+        [(ngModel)]="editBev.description" />
+    </label>
+    <br>
+    <label for="completed">Caffeinated:
+      <input class="form" type="checkbox" name="caffeinated" placeholder="Caffeinated"
+        [(ngModel)]="editBev.caffeinated" />
+    </label>
+    <br>
+    <label for="completed">Caffeine (mg):
+      <input class="form" type="number" name="caffeine" placeholder="caffeine" [(ngModel)]="editBev.caffeine" />
+    </label>
+    <br>
+    <label for="completed">Volume (ounces):
+      <input class="form" type="number" name="volume" placeholder="volume" [(ngModel)]="editBev.volume" />
+    </label>
+    <br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <input class="form-control" type="submit" value="Save" (click)="editSubmit(editForm)"
+        class="btn btn-outline-warning" />
+      <button (click)="selected=null; editTodo=null" class="btn btn-outline-primary">Cancel</button>
+      <button (click)="deleteBev(editBev.id); selected=null; editBev=null"
+        class="btn btn-outline-danger">Delete</button>
+    </div>
+  </form>
+</div>
+<br><br><br>

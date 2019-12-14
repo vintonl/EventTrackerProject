@@ -33,8 +33,41 @@ export class BevListComponent implements OnInit {
     );
   }
 
-  displayBev() {
+  displayBev(bev: Beverage) {
+    this.selected = bev;
+  }
 
+  setEditBev() {
+    this.editBev = Object.assign({}, this.selected);
+    console.log(this.editBev);
+  }
+
+  editSubmit() {
+    this.bevSvc.update(this.editBev).subscribe(
+      (goodData) => {
+        this.loadBevs();
+        this.editBev = new Beverage();
+        this.editBev = null;
+        this.selected = goodData;
+      },
+      (bad) => {
+        console.log('TodoListCompment.editSubmit() error');
+        console.log(bad);
+      }
+    );
+  }
+
+  deleteBev(id: number) {
+    this.bevSvc.destroy(id).subscribe(
+      (good) => {
+        // console.log(good);
+        this.loadBevs();
+      },
+      (bad) => {
+        console.log('TodoListCompment.deleteToDo() error');
+        console.log(bad);
+      }
+    );
   }
 
 }
