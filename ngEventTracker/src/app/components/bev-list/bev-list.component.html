@@ -13,13 +13,9 @@
       <br>
       <li class="nav-item"><a (click)="addForm=true; list=true" class="nav-link">Add Beverage</a></li>
       <br>
+      <li class="nav-item"><a [routerLink]="['/beverages']" (click)="list=null" class="nav-link">Search</a></li>
+      <br>
     </ul>
-    <form #searchForm="ngForm" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
-        [(ngModel)]="keyword" (keydown)="clearSearch()">
-      <button class="btn btn-dark my-2 my-sm-0" type="submit"
-        (click)="search(searchForm); list=true; searchResult=true">Search</button>
-    </form>
   </div>
 
 </nav>
@@ -28,17 +24,34 @@
 
   <div *ngIf="!list">
     <br><br><br><br>
-    <div class="mx-auto" style="width: 25%;">
+    <div class="text-center">
       <button (click)="list=true" class="btn btn-outline-primary">
         <h2>Welcome to the Beverage Tracker</h2>
       </button>
+      <br>
+      <br>
+      <div class="container-center">
+        <form #searchForm="ngForm" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
+            [(ngModel)]="keyword">
+          <button class="btn btn-dark my-2 my-sm-0" type="submit"
+            (click)="search(searchForm); list=true; searchResult=true">Search by keyword</button>
+        </form>
+        <br>
+        <form #searchDateForm="ngForm" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="date" placeholder="Search" aria-label="Search" name="date"
+            [(ngModel)]="dateSearch">
+          <button class="btn btn-dark my-2 my-sm-0" type="submit"
+            (click)="searchDate(searchDateForm); list=true; searchResult=true">Search by Date</button>
+        </form>
+      </div>
     </div>
   </div>
 
   <div *ngIf="list">
     <div *ngIf="!selected && !addForm && !searchResult">
       <br>
-      <div class="mx-auto" style="width: 25%;">
+      <div class="text-center">
         <h2>List of Beverage</h2>
       </div>
       <table class="table table-primary table-bordered">
@@ -66,7 +79,7 @@
     <div *ngIf="list">
       <div *ngIf="!selected && !addForm && searchBevs.length > 0">
         <br>
-        <div class="mx-auto" style="width: 25%;">
+        <div class="text-center">
           <h2>Search Results</h2>
         </div>
         <table class="table table-primary table-bordered">
@@ -91,124 +104,150 @@
         </table>
       </div>
 
-      <div *ngIf="addForm">
-        <br>
-        <div class="mx-auto" style="width: 25%;">
-          <h2>Add Beverage</h2>
-        </div>
-        <form #newBevForm="ngForm" *ngIf="!selected" class="form-group">
-
-          <label for="name">Name:
-            <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newBev.name" />
-          </label> <br>
-          <label for="description">Description:
-            <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="description"
-              [(ngModel)]="newBev.description"></textarea>
-          </label> <br>
-          <label for="ingredients">Ingredients:
-            <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients" placeholder="ingredients"
-              [(ngModel)]="newBev.ingredients"></textarea>
-          </label> <br>
-          <label for="caffeinated">Caffeinated:
-            <input class="form-control" type="checkbox" name="caffeinated" placeholder="caffeinated"
-              [(ngModel)]="newBev.caffeinated" />
-          </label> <br>
-          <label for="caffeine">Caffeine (mg):
-            <input class="form-control" type="number" name="caffeine" placeholder="caffeine" min="0"
-              [(ngModel)]="newBev.caffeine" />
-          </label> <br>
-          <label for="volume">Volume (ounces):
-            <input class="form-control" type="number" name="volume" placeholder="volume" min="0"
-              [(ngModel)]="newBev.volume" />
-          </label> <br>
-          <label for="calories">Calories:
-            <input class="form-control" type="number" name="calories" placeholder="calories" min="0"
-              [(ngModel)]="newBev.calories" />
-          </label> <br>
-
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <input type="submit" value="Add Item" (click)="addBev(newBevForm); displayBev(newBev); addForm=null"
-              class="btn btn-outline-success" />
-            <button (click)="selected=null; editBev=null; addForm=null" class="btn btn-outline-danger">Cancel</button>
+      <div *ngIf="list">
+        <div *ngIf="!selected && !addForm && searchBevs.length > 0">
+          <br>
+          <div class="text-center">
+            <h2>Search Totals</h2>
           </div>
-        </form>
-      </div>
+          <table class="table table-primary table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Total Beverages</th>
+                <th scope="col"> Total Caffeine (mg)</th>
+                <th scope="col"> Total Calories</th>
+                <th scope="col">Total Volume (ounces)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row">{{totalBevs}}</td>
+                <td>{{totalCaffeine}}</td>
+                <td>{{totalCalories}}</td>
+                <td>{{totalVolume}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <div *ngIf="selected">
-        <br>
-        <div class="mx-auto" style="width: 25%;">
-          <h2>Beverage Details</h2>
-        </div>
-        <ul class="list-group">
-          <li class="list-group-item active" *ngIf="this.selected && this.selected.id && this.selected.id > 0">Id:
-            {{selected.id}}</li>
-          <li class="list-group-item ">Name: {{selected.name | titlecase }}</li>
-          <li class="list-group-item"
-            *ngIf="this.selected && this.selected.description && this.selected.description.length > 0">Description:
-            {{selected.description}}</li>
-          <li class="list-group-item"
-            *ngIf="this.selected && this.selected.ingredients && this.selected.ingredients.length > 0">Ingredients:
-            {{selected.ingredients}}</li>
-          <li class="list-group-item ">Caffeinated: {{selected.caffeinated}}</li>
-          <li class="list-group-item ">Caffeine: {{selected.caffeine}} mg</li>
-          <li class="list-group-item ">Calories: {{selected.calories}}</li>
-          <li class="list-group-item ">Volume: {{selected.volume}} ounces</li>
-          <li class="list-group-item">Date Consumed: {{selected.createdAt | date:'fullDate'}}</li>
-          <li class="list-group-item">Date Last Updated: {{selected.updatedAt | date:'fullDate'}}</li>
-        </ul>
-        <br>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <span>
-            <button (click)="setEditBev()" class="btn btn-outline-success">Edit</button>
-            <button (click)="selected=null; editBev=null" class="btn btn-outline-primary">Back to the list</button>
-          </span>
-        </div>
-      </div>
+        <div *ngIf="addForm">
+          <br>
+          <div class="text-center">
+            <h2>Add Beverage</h2>
+          </div>
+          <form #newBevForm="ngForm" *ngIf="!selected" class="form-group">
 
-      <div *ngIf="editBev != undefined" class="form-group">
-        <br>
-        <div class="mx-auto" style="width: 24%;">
-          <h2>Edit Beverage Details</h2>
+            <label for="name">Name:
+              <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newBev.name" />
+            </label> <br>
+            <label for="description">Description:
+              <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="description"
+                [(ngModel)]="newBev.description"></textarea>
+            </label> <br>
+            <label for="ingredients">Ingredients:
+              <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients" placeholder="ingredients"
+                [(ngModel)]="newBev.ingredients"></textarea>
+            </label> <br>
+            <label for="caffeinated">Caffeinated:
+              <input class="form-control" type="checkbox" name="caffeinated" placeholder="caffeinated"
+                [(ngModel)]="newBev.caffeinated" />
+            </label> <br>
+            <label for="caffeine">Caffeine (mg):
+              <input class="form-control" type="number" name="caffeine" placeholder="caffeine" min="0"
+                [(ngModel)]="newBev.caffeine" />
+            </label> <br>
+            <label for="volume">Volume (ounces):
+              <input class="form-control" type="number" name="volume" placeholder="volume" min="0"
+                [(ngModel)]="newBev.volume" />
+            </label> <br>
+            <label for="calories">Calories:
+              <input class="form-control" type="number" name="calories" placeholder="calories" min="0"
+                [(ngModel)]="newBev.calories" />
+            </label> <br>
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <input type="submit" value="Add Item" (click)="addBev(newBevForm); displayBev(newBev); addForm=null"
+                class="btn btn-outline-success" />
+              <button (click)="selected=null; editBev=null; addForm=null" class="btn btn-outline-danger">Cancel</button>
+            </div>
+          </form>
         </div>
-        <form #editForm="ngForm">
-          <h2>Beverage Id: {{editBev.id}}</h2>
-          <label for="task">Name:
-            <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="editBev.name" />
-          </label>
+
+        <div *ngIf="selected">
           <br>
-          <label for="description">Description:
-            <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="Description"
-              [(ngModel)]="editBev.description"></textarea>
-          </label>
-          <br>
-          <label for="ingredients">Ingredients:
-            <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients" placeholder="ingredients"
-              [(ngModel)]="editBev.ingredients"></textarea>
-          </label>
-          <br>
-          <label for="caffeinated">Caffeinated:
-            <input class="form" type="checkbox" name="caffeinated" placeholder="Caffeinated"
-              [(ngModel)]="editBev.caffeinated" />
-          </label>
-          <br>
-          <label for="caffeine">Caffeine (mg):
-            <input class="form" type="number" name="caffeine" placeholder="caffeine" [(ngModel)]="editBev.caffeine" />
-          </label>
-          <br>
-          <label for="volume">Volume (ounces):
-            <input class="form" type="number" name="volume" placeholder="volume" [(ngModel)]="editBev.volume" />
-          </label>
+          <div class="text-center">
+            <h2>Beverage Details</h2>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item active" *ngIf="this.selected && this.selected.id && this.selected.id > 0">Id:
+              {{selected.id}}</li>
+            <li class="list-group-item ">Name: {{selected.name | titlecase }}</li>
+            <li class="list-group-item"
+              *ngIf="this.selected && this.selected.description && this.selected.description.length > 0">Description:
+              {{selected.description}}</li>
+            <li class="list-group-item"
+              *ngIf="this.selected && this.selected.ingredients && this.selected.ingredients.length > 0">Ingredients:
+              {{selected.ingredients}}</li>
+            <li class="list-group-item ">Caffeinated: {{selected.caffeinated}}</li>
+            <li class="list-group-item ">Caffeine: {{selected.caffeine}} mg</li>
+            <li class="list-group-item ">Calories: {{selected.calories}}</li>
+            <li class="list-group-item ">Volume: {{selected.volume}} ounces</li>
+            <li class="list-group-item">Date Consumed: {{selected.createdAt | date:'fullDate'}}</li>
+            <li class="list-group-item">Date Last Updated: {{selected.updatedAt | date:'fullDate'}}</li>
+          </ul>
           <br>
           <div class="btn-group" role="group" aria-label="Basic example">
-            <input class="form-control" type="submit" value="Save" (click)="editSubmit(editForm)"
-              class="btn btn-outline-warning" />
-            <button (click)="selected=null; editBev=null" class="btn btn-outline-primary">Cancel</button>
-            <button (click)="deleteBev(editBev.id); selected=null; editBev=null"
-              class="btn btn-outline-danger">Delete</button>
+            <span>
+              <button (click)="setEditBev()" class="btn btn-outline-success">Edit</button>
+              <button (click)="selected=null; editBev=null" class="btn btn-outline-primary">Back to the list</button>
+            </span>
           </div>
-        </form>
+        </div>
+
+        <div *ngIf="editBev != undefined" class="form-group">
+          <br>
+          <div class="text-center">
+            <h2>Edit Beverage Details</h2>
+          </div>
+          <form #editForm="ngForm">
+            <h2>Beverage Id: {{editBev.id}}</h2>
+            <label for="task">Name:
+              <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="editBev.name" />
+            </label>
+            <br>
+            <label for="description">Description:
+              <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="Description"
+                [(ngModel)]="editBev.description"></textarea>
+            </label>
+            <br>
+            <label for="ingredients">Ingredients:
+              <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients" placeholder="ingredients"
+                [(ngModel)]="editBev.ingredients"></textarea>
+            </label>
+            <br>
+            <label for="caffeinated">Caffeinated:
+              <input class="form" type="checkbox" name="caffeinated" placeholder="Caffeinated"
+                [(ngModel)]="editBev.caffeinated" />
+            </label>
+            <br>
+            <label for="caffeine">Caffeine (mg):
+              <input class="form" type="number" name="caffeine" placeholder="caffeine" [(ngModel)]="editBev.caffeine" />
+            </label>
+            <br>
+            <label for="volume">Volume (ounces):
+              <input class="form" type="number" name="volume" placeholder="volume" [(ngModel)]="editBev.volume" />
+            </label>
+            <br>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <input class="form-control" type="submit" value="Save" (click)="editSubmit(editForm)"
+                class="btn btn-outline-warning" />
+              <button (click)="selected=null; editBev=null" class="btn btn-outline-primary">Cancel</button>
+              <button (click)="deleteBev(editBev.id); selected=null; editBev=null"
+                class="btn btn-outline-danger">Delete</button>
+            </div>
+          </form>
+        </div>
       </div>
+
     </div>
-
-  </div>
-  <br><br><br>
+    <br><br><br>

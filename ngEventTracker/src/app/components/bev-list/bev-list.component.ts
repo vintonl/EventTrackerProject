@@ -21,7 +21,13 @@ export class BevListComponent implements OnInit {
   id: number = null;
   user1 = new User(1);
   keyword: string = null;
+  dateSearch: Date = null;
+  dateSearchTotals = null;
   searchResult: null;
+  totalBevs = 0;
+  totalCaffeine = 0;
+  totalCalories = 0;
+  totalVolume = 0;
 
   constructor(private bevSvc: BeverageService) { }
 
@@ -40,26 +46,59 @@ export class BevListComponent implements OnInit {
       }
     );
   }
-  clearSearch() {
-    this.searchBevs = [];
+
+
+  search() {
+    this.clearSearch();
+    this.loadBevs();
+    this.resetTotals();
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.bevs.length; i++) {
+      if (this.bevs[i].name.includes(this.keyword)) {
+        this.searchBevs.push(this.bevs[i]);
+        this.totalBevs++;
+        this.totalCaffeine += this.bevs[i].caffeine;
+        this.totalCalories += this.bevs[i].calories;
+        this.totalVolume += this.bevs[i].volume;
+        continue;
+      }
+      if (this.bevs[i].description && this.bevs[i].description.includes(this.keyword)) {
+        this.searchBevs.push(this.bevs[i]);
+        this.totalBevs++;
+        this.totalCaffeine += this.bevs[i].caffeine;
+        this.totalCalories += this.bevs[i].calories;
+        this.totalVolume += this.bevs[i].volume;
+        continue;
+      }
+      if (this.bevs[i].ingredients && this.bevs[i].ingredients.includes(this.keyword)) {
+        this.searchBevs.push(this.bevs[i]);
+        this.totalBevs++;
+        this.totalCaffeine += this.bevs[i].caffeine;
+        this.totalCalories += this.bevs[i].calories;
+        this.totalVolume += this.bevs[i].volume;
+      }
+
+    }
+    this.keyword = null;
   }
 
-  search(): Beverage[] {
-    console.log('Search string ' + this.keyword);
-
+  searchDate() {
+    this.clearSearch();
     this.loadBevs();
-    this.bevs.forEach(bev => {
-      if (bev.name.includes(this.keyword)) {
-        this.searchBevs.push(bev);
-      } else if (bev.description && bev.description.includes(this.keyword)) {
-        this.searchBevs.push(bev);
-      } else if (bev.ingredients && bev.ingredients.includes(this.keyword)) {
-        this.searchBevs.push(bev);
+    this.resetTotals();
+
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.bevs.length; i++) {
+      if (this.bevs[i].createdAt === this.dateSearch) {
+        this.searchBevs.push(this.bevs[i]);
+        this.totalBevs++;
+        this.totalCaffeine += this.bevs[i].caffeine;
+        this.totalCalories += this.bevs[i].calories;
+        this.totalVolume += this.bevs[i].volume;
       }
-    });
+    }
     this.keyword = null;
-    console.log(this.searchBevs);
-    return this.searchBevs;
   }
 
   displayBev(bev: Beverage) {
@@ -116,4 +155,14 @@ export class BevListComponent implements OnInit {
     );
   }
 
+  private resetTotals() {
+    this.totalBevs = 0;
+    this.totalCaffeine = 0;
+    this.totalCalories = 0;
+    this.totalVolume = 0;
+  }
+
+  private clearSearch() {
+    this.searchBevs = [];
+  }
 }
