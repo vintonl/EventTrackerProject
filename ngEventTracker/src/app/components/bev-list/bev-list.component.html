@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
-  <a class="navbar-brand" [routerLink]="['/beverages']" (click)="list=null">Beverage Tracker</a>
+  <a class="navbar-brand" [routerLink]="['/home']" (click)="list=null">Beverage Tracker</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,28 +23,39 @@
 <div class="contaner-fluid">
 
   <div *ngIf="!list">
-    <br><br><br><br>
+    <br>
     <div class="text-center">
-      <button (click)="list=true" class="btn btn-outline-primary">
-        <h2>Welcome to the Beverage Tracker</h2>
-      </button>
-      <br>
-      <br>
-      <div class="container-center">
-        <form #searchForm="ngForm" class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
-            [(ngModel)]="keyword">
-          <button class="btn btn-dark my-2 my-sm-0" type="submit"
-            (click)="search(searchForm); list=true; searchResult=true">Search by keyword</button>
-        </form>
-        <br>
-        <form #searchDateForm="ngForm" class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="date" placeholder="Search" aria-label="Search" name="date"
-            [(ngModel)]="dateSearch">
-          <button class="btn btn-dark my-2 my-sm-0" type="submit"
-            (click)="searchDate(searchDateForm); list=true; searchResult=true">Search by Date</button>
-        </form>
+      <h2>Track your caffine, fuild, and calories daily </h2>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <div class="container-center">
+          <button class="btn btn-dark my-2 my-sm-0" type="submit" (click)="list=true; searchResult=null">See tracked
+            beverages</button>
+          <br>
+          <br>
+          <button class="btn btn-dark my-2 my-sm-0" type="submit" (click)="addForm=true; list=true">Add a
+            beverage</button>
+          <br>
+          <br>
+          <form #searchForm="ngForm" class="form-group my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
+              [(ngModel)]="keyword">
+            <button class="btn btn-dark my-2 my-sm-0" type="submit"
+              (click)="search(searchForm); list=true; searchResult=true">Search by keyword</button>
+          </form>
+          <br>
+          <form #searchDateForm="ngForm" class="form-group my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="date" placeholder="Search" aria-label="Search" name="date"
+              [(ngModel)]="dateSearch">
+            <button class="btn btn-dark my-2 my-sm-0" type="submit"
+              (click)="searchDate(searchDateForm); list=true; searchResult=true">Search by Date</button>
+          </form>
+        </div>
+
       </div>
+      <div class="col-3"></div>
     </div>
   </div>
 
@@ -77,6 +88,33 @@
     </div>
 
     <div *ngIf="list">
+      <div *ngIf="!selected && !addForm && hideSearchResult && searchBevs.length == 0">
+        <br>
+        <div class="text-center">
+          <h2>No Results Found</h2>
+          <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <div class="container-center">
+                <form #searchForm="ngForm" class="form-group my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                    name="keyword" [(ngModel)]="keyword">
+                  <button class="btn btn-dark my-2 my-sm-0" type="submit"
+                    (click)="search(searchForm); list=true; searchResult=true">Search by keyword</button>
+                </form>
+                <br>
+                <form #searchDateForm="ngForm" class="form-group my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="date" placeholder="Search" aria-label="Search" name="date"
+                    [(ngModel)]="dateSearch">
+                  <button class="btn btn-dark my-2 my-sm-0" type="submit"
+                    (click)="searchDate(searchDateForm); list=true; searchResult=true">Search by Date</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
       <div *ngIf="!selected && !addForm && searchBevs.length > 0">
         <br>
         <div class="text-center">

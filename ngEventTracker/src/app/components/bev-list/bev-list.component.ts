@@ -24,6 +24,7 @@ export class BevListComponent implements OnInit {
   dateSearch: Date = null;
   dateSearchTotals = null;
   searchResult: null;
+  hideSearchResult = false;
   totalBevs = 0;
   totalCaffeine = 0;
   totalCalories = 0;
@@ -80,6 +81,11 @@ export class BevListComponent implements OnInit {
       }
 
     }
+    if (this.searchBevs.length === 0) {
+      this.hideSearchResult = false;
+    } else {
+      this.hideSearchResult = true;
+    }
     this.keyword = null;
   }
 
@@ -97,6 +103,12 @@ export class BevListComponent implements OnInit {
         this.totalCalories += this.bevs[i].calories;
         this.totalVolume += this.bevs[i].volume;
       }
+    }
+
+    if (this.searchBevs.length === 0) {
+      this.hideSearchResult = false;
+    } else {
+      this.hideSearchResult = true;
     }
     this.keyword = null;
   }
