@@ -73,6 +73,9 @@
     <li class="list-group-item"
       *ngIf="this.selected && this.selected.description && this.selected.description.length > 0">Description:
       {{selected.description}}</li>
+    <li class="list-group-item"
+      *ngIf="this.selected && this.selected.ingredients && this.selected.ingredients.length > 0">Ingredients:
+      {{selected.ingredients}}</li>
     <li class="list-group-item ">Caffeinated: {{selected.caffeinated}}</li>
     <li class="list-group-item ">Caffeine: {{selected.caffeine}} mg</li>
     <li class="list-group-item ">Calories: {{selected.calories}}</li>
