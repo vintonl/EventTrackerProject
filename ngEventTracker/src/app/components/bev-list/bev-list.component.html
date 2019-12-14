@@ -1,1 +1,27 @@
-<p>bev-list works!</p>
+<div *ngIf="!selected">
+  <table class="table table-primary table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Caffeine</th>
+        <th scope="col">Calories</th>
+        <!-- <th scope="col">Completed Date</th>
+        <th scope="col">Delete</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of bevs">
+        <td scope="row" (click)="displayBev(item)">{{item.name}}</td>
+        <!-- <td>
+          <input class="form-control" type="checkbox" name="mark" id="" [(ngModel)]="item.completed"
+            (change)="editComplete(item)">
+        </td> -->
+        <td>{{item.caffeine}}</td>
+        <td>{{item.calories}}</td>
+        <!-- <td>
+          <input type="submit" value="X" (click)="deleteTodo(item.id)" class="btn btn-danger btn-sm" />
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

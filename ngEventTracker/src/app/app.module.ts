@@ -1,3 +1,4 @@
+import { BeverageService } from './services/beverage.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -26,6 +27,7 @@ import { DatePipe } from '@angular/common';
     HttpClientModule
   ],
   providers: [
+    BeverageService,
     DatePipe
   ],
   bootstrap: [AppComponent]
