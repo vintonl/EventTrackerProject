@@ -47,6 +47,9 @@ export class BevListComponent implements OnInit {
 
   addBev() {
     this.newBev.user = this.user1;
+    this.newBev.active = true;
+    this.newBev.containsAlcohol = false;
+
     return this.bevSvc.create(this.newBev).subscribe(
       (good) => {
         this.loadBevs();

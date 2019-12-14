@@ -25,12 +25,6 @@ export class BeverageService {
   }
 
   create(newBev: Beverage) {
-    newBev.active = true;
-    newBev.containsAlcohol = false;
-    newBev.ingredients = '';
-
-    console.log(newBev);
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

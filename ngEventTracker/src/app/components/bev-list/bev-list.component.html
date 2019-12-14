@@ -34,8 +34,12 @@
       <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newBev.name" />
     </label> <br>
     <label for="description">Description:
-      <input class="form-control" type="text" name="description" placeholder="description"
-        [(ngModel)]="newBev.description" />
+      <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="description"
+        [(ngModel)]="newBev.description"></textarea>
+    </label> <br>
+    <label for="ingredients">Ingredients:
+      <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients" placeholder="ingredients"
+        [(ngModel)]="newBev.ingredients"></textarea>
     </label> <br>
     <label for="caffeinated">Caffeinated:
       <input class="form-control" type="checkbox" name="caffeinated" placeholder="caffeinated"
@@ -51,14 +55,11 @@
       <input class="form-control" type="number" name="calories" placeholder="calories" [(ngModel)]="newBev.calories" />
     </label> <br>
 
-
-    <input type="submit" value="Add Item" (click)="addBev(newBevForm)" class="btn btn-outline-success" />
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <input type="submit" value="Add Item" (click)="addBev(newBevForm)" class="btn btn-outline-success" />
+      <button (click)="selected=null; editBev=null; addForm=null" class="btn btn-outline-danger">Back</button>
+    </div>
   </form>
-  <!-- <div>
-    <label>Show all:
-      <input type="checkbox" name="mark" [(ngModel)]="showComplete" />
-    </label> <br>
-  </div> -->
 </div>
 
 <div *ngIf="selected">
@@ -102,6 +103,11 @@
     <label for="description">Description:
       <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="Description"
         [(ngModel)]="editBev.description"></textarea>
+    </label>
+    <br>
+    <label for="ingredients">Ingredients:
+      <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients" placeholder="ingredients"
+        [(ngModel)]="editBev.ingredients"></textarea>
     </label>
     <br>
     <label for="caffeinated">Caffeinated:
