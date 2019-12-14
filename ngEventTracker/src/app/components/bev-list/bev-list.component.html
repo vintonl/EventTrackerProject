@@ -168,53 +168,53 @@
           </table>
         </div>
 
-        <div *ngIf="addForm">
-          <br>
-          <div class="text-center">
-            <h2>Add Beverage</h2>
-          </div>
-          <form #newBevForm="ngForm" *ngIf="!selected" class="form-group">
-
-            <label for="name">Name:
-              <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newBev.name" />
-            </label> <br>
-            <label for="description">Description:
-              <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="description"
-                [(ngModel)]="newBev.description"></textarea>
-            </label> <br>
-            <label for="ingredients">Ingredients:
-              <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients" placeholder="ingredients"
-                [(ngModel)]="newBev.ingredients"></textarea>
-            </label> <br>
-            <label for="caffeinated">Caffeinated:
-              <input class="form-control" type="checkbox" name="caffeinated" placeholder="caffeinated"
-                [(ngModel)]="newBev.caffeinated" />
-            </label> <br>
-            <label for="caffeine">Caffeine (mg):
-              <input class="form-control" type="number" name="caffeine" placeholder="caffeine" min="0"
-                [(ngModel)]="newBev.caffeine" />
-            </label> <br>
-            <label for="volume">Volume (ounces):
-              <input class="form-control" type="number" name="volume" placeholder="volume" min="0"
-                [(ngModel)]="newBev.volume" />
-            </label> <br>
-            <label for="calories">Calories:
-              <input class="form-control" type="number" name="calories" placeholder="calories" min="0"
-                [(ngModel)]="newBev.calories" />
-            </label> <br>
-
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <input type="submit" value="Add Item" (click)="addBev(newBevForm); displayBev(newBev); addForm=null"
-                class="btn btn-outline-success" />
-              <button (click)="selected=null; editBev=null; addForm=null"
-                class="btn btn-dark my-2 my-sm-0">Cancel</button>
-            </div>
-          </form>
-        </div>
-
         <div class="row">
           <div class="col-3"></div>
           <div class="col-6">
+            <div *ngIf="addForm">
+              <br>
+              <div class="text-center">
+                <h2>Add Beverage</h2>
+              </div>
+              <form #newBevForm="ngForm" *ngIf="!selected" class="form-group">
+
+                <label for="name">Name:
+                  <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newBev.name" />
+                </label> <br>
+                <label for="description">Description:
+                  <textarea class="form-control" cols="40" rows="5" type="text" name="description"
+                    placeholder="description" [(ngModel)]="newBev.description"></textarea>
+                </label> <br>
+                <label for="ingredients">Ingredients:
+                  <textarea class="form-control" cols="40" rows="5" type="text" name="ingredients"
+                    placeholder="ingredients" [(ngModel)]="newBev.ingredients"></textarea>
+                </label> <br>
+                <label for="caffeinated">Caffeinated:
+                  <input class="form-control" type="checkbox" name="caffeinated" placeholder="caffeinated"
+                    [(ngModel)]="newBev.caffeinated" />
+                </label> <br>
+                <label for="caffeine">Caffeine (mg):
+                  <input class="form-control" type="number" name="caffeine" placeholder="caffeine" min="0"
+                    [(ngModel)]="newBev.caffeine" />
+                </label> <br>
+                <label for="volume">Volume (ounces):
+                  <input class="form-control" type="number" name="volume" placeholder="volume" min="0"
+                    [(ngModel)]="newBev.volume" />
+                </label> <br>
+                <label for="calories">Calories:
+                  <input class="form-control" type="number" name="calories" placeholder="calories" min="0"
+                    [(ngModel)]="newBev.calories" />
+                </label> <br>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <input type="submit" value="Add Item" (click)="addBev(newBevForm); displayBev(newBev); addForm=null"
+                    class="btn btn-success" />
+                  <button (click)="selected=null; editBev=null; addForm=null"
+                    class="btn btn-dark my-2 my-sm-0">Cancel</button>
+                </div>
+              </form>
+            </div>
+
             <div *ngIf="selected">
               <br>
               <div class="text-center">
@@ -242,9 +242,11 @@
               <br>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <span>
-                  <button (click)="setEditBev()" class="btn btn-warning my-2 my-sm-0">Edit</button>
-                  <button (click)="selected=null; editBev=null" class="btn btn-dark my-2 my-sm-0">Back to the
-                    list</button>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button (click)="setEditBev()" class="btn btn-warning my-2 my-sm-0">Edit</button>
+                    <button (click)="selected=null; editBev=null" class="btn btn-dark my-2 my-sm-0">Back to the
+                      list</button>
+                  </div>
                 </span>
               </div>
             </div>
@@ -286,7 +288,7 @@
                 <br>
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <input class="form-control" type="submit" value="Save" (click)="editSubmit(editForm)"
-                    class="btn btn-dark my-2 my-sm-0" />
+                    class="btn btn-success my-2 my-sm-0" />
                   <button (click)="selected=null; editBev=null" class="btn btn-dark my-2 my-sm-0">Cancel</button>
                   <button (click)="deleteBev(editBev.id); selected=null; editBev=null"
                     class="btn btn-danger my-2 my-sm-0">Delete form tracker</button>
