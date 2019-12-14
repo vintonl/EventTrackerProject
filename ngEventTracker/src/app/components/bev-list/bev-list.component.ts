@@ -13,6 +13,7 @@ export class BevListComponent implements OnInit {
   bevs: Beverage[] = [];
   selected = null;
   addForm = null;
+  list = null;
   newBev = new Beverage();
   editBev: Beverage = null;
   id: number = null;
