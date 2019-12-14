@@ -1,7 +1,8 @@
 import { User } from './../../models/user';
 import { BeverageService } from './../../services/beverage.service';
 import { Beverage } from './../../models/beverage';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-bev-list',
@@ -11,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class BevListComponent implements OnInit {
   title = 'Beverage Tracker';
   bevs: Beverage[] = [];
+  searchBevs: Beverage[] = [];
   selected = null;
   addForm = null;
   list = null;
@@ -18,6 +20,8 @@ export class BevListComponent implements OnInit {
   editBev: Beverage = null;
   id: number = null;
   user1 = new User(1);
+  keyword: string = null;
+  searchResult: null;
 
   constructor(private bevSvc: BeverageService) { }
 
@@ -35,6 +39,27 @@ export class BevListComponent implements OnInit {
         console.log(didntWork);
       }
     );
+  }
+  clearSearch() {
+    this.searchBevs = [];
+  }
+
+  search(): Beverage[] {
+    console.log('Search string ' + this.keyword);
+
+    this.loadBevs();
+    this.bevs.forEach(bev => {
+      if (bev.name.includes(this.keyword)) {
+        this.searchBevs.push(bev);
+      } else if (bev.description && bev.description.includes(this.keyword)) {
+        this.searchBevs.push(bev);
+      } else if (bev.ingredients && bev.ingredients.includes(this.keyword)) {
+        this.searchBevs.push(bev);
+      }
+    });
+    this.keyword = null;
+    console.log(this.searchBevs);
+    return this.searchBevs;
   }
 
   displayBev(bev: Beverage) {
