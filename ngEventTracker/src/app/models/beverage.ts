@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export class Beverage {
   id: number;
   name: string;
@@ -11,6 +13,7 @@ export class Beverage {
   active: boolean;
   createdAt: Date;
   updatedAt: Date;
+  user: User;
 
   constructor(
     id?: number,

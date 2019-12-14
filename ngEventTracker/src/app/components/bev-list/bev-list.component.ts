@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { BeverageService } from './../../services/beverage.service';
 import { Beverage } from './../../models/beverage';
 import { Component, OnInit } from '@angular/core';
@@ -11,9 +12,11 @@ export class BevListComponent implements OnInit {
   title = 'Beverage Tracker';
   bevs: Beverage[] = [];
   selected = null;
+  addForm = null;
   newBev = new Beverage();
   editBev: Beverage = null;
   id: number = null;
+  user1 = new User(1);
 
   constructor(private bevSvc: BeverageService) { }
 
@@ -42,6 +45,20 @@ export class BevListComponent implements OnInit {
     console.log(this.editBev);
   }
 
+  addBev() {
+    this.newBev.user = this.user1;
+    return this.bevSvc.create(this.newBev).subscribe(
+      (good) => {
+        this.loadBevs();
+        this.newBev = new Beverage();
+      },
+      (bad) => {
+        console.log('BevListComponent.addBev() error');
+        console.log(bad);
+      }
+    );
+  }
+
   editSubmit() {
     this.bevSvc.update(this.editBev).subscribe(
       (goodData) => {
@@ -51,7 +68,7 @@ export class BevListComponent implements OnInit {
         this.selected = goodData;
       },
       (bad) => {
-        console.log('TodoListCompment.editSubmit() error');
+        console.log('BevListComponent.editSubmit() error');
         console.log(bad);
       }
     );
@@ -64,7 +81,7 @@ export class BevListComponent implements OnInit {
         this.loadBevs();
       },
       (bad) => {
-        console.log('TodoListCompment.deleteToDo() error');
+        console.log('BevListComponent.deleteBev() error');
         console.log(bad);
       }
     );

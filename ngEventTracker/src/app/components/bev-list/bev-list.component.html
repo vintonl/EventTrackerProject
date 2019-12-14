@@ -17,14 +17,55 @@
         <td>{{item.calories}}</td>
         <td>{{item.volume}}</td>
         <td>{{item.createdAt | date:'shortDate'}}</td>
-
       </tr>
     </tbody>
   </table>
+  <button (click)="addForm=true" class="btn btn-outline-success">Add Beverage</button>
+</div>
+
+<div *ngIf="addForm">
+  <br>
+  <div class="mx-auto" style="width: 25%;">
+    <h2>Add Beverage</h2>
+  </div>
+  <form #newBevForm="ngForm" *ngIf="!selected" class="form-group">
+
+    <label for="name">Name:
+      <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newBev.name" />
+    </label> <br>
+    <label for="description">Description:
+      <input class="form-control" type="text" name="description" placeholder="description"
+        [(ngModel)]="newBev.description" />
+    </label> <br>
+    <label for="caffeinated">Caffeinated:
+      <input class="form-control" type="checkbox" name="caffeinated" placeholder="caffeinated"
+        [(ngModel)]="newBev.caffeinated" />
+    </label> <br>
+    <label for="caffeine">Caffeine (mg):
+      <input class="form-control" type="number" name="caffeine" placeholder="caffeine" [(ngModel)]="newBev.caffeine" />
+    </label> <br>
+    <label for="volume">Volume (ounces):
+      <input class="form-control" type="number" name="volume" placeholder="volume" [(ngModel)]="newBev.volume" />
+    </label> <br>
+    <label for="calories">Calories:
+      <input class="form-control" type="number" name="calories" placeholder="calories" [(ngModel)]="newBev.calories" />
+    </label> <br>
+
+
+    <input type="submit" value="Add Item" (click)="addBev(newBevForm)" class="btn btn-outline-success" />
+  </form>
+  <!-- <div>
+    <label>Show all:
+      <input type="checkbox" name="mark" [(ngModel)]="showComplete" />
+    </label> <br>
+  </div> -->
 </div>
 
 <div *ngIf="selected">
   <br>
+  <div class="mx-auto" style="width: 25%;">
+    <h2>Beverage Details</h2>
+  </div>
   <ul class="list-group">
     <li class="list-group-item active">Id: {{selected.id}}</li>
     <li class="list-group-item ">Name: {{selected.name | titlecase }}</li>
@@ -39,14 +80,19 @@
     <li class="list-group-item">Date Last Updated: {{selected.updatedAt | date:'fullDate'}}</li>
   </ul>
   <br>
-  <span>
-    <button (click)="setEditBev()" class="btn btn-outline-success">Edit</button>
-    <button (click)="selected=null; editBev=null" class="btn btn-outline-danger">Back</button>
-  </span>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <span>
+      <button (click)="setEditBev()" class="btn btn-outline-success">Edit</button>
+      <button (click)="selected=null; editBev=null" class="btn btn-outline-danger">Back</button>
+    </span>
+  </div>
 </div>
 
 <div *ngIf="editBev != undefined" class="form-group">
   <br>
+  <div class="mx-auto" style="width: 24%;">
+    <h2>Edit Beverage Details</h2>
+  </div>
   <form #editForm="ngForm">
     <h2>Beverage Id: {{editBev.id}}</h2>
     <label for="task">Name:
@@ -54,27 +100,27 @@
     </label>
     <br>
     <label for="description">Description:
-      <input class="form-control" type="text" name="description" placeholder="Description"
-        [(ngModel)]="editBev.description" />
+      <textarea class="form-control" cols="40" rows="5" type="text" name="description" placeholder="Description"
+        [(ngModel)]="editBev.description"></textarea>
     </label>
     <br>
-    <label for="completed">Caffeinated:
+    <label for="caffeinated">Caffeinated:
       <input class="form" type="checkbox" name="caffeinated" placeholder="Caffeinated"
         [(ngModel)]="editBev.caffeinated" />
     </label>
     <br>
-    <label for="completed">Caffeine (mg):
+    <label for="caffeine">Caffeine (mg):
       <input class="form" type="number" name="caffeine" placeholder="caffeine" [(ngModel)]="editBev.caffeine" />
     </label>
     <br>
-    <label for="completed">Volume (ounces):
+    <label for="volume">Volume (ounces):
       <input class="form" type="number" name="volume" placeholder="volume" [(ngModel)]="editBev.volume" />
     </label>
     <br>
     <div class="btn-group" role="group" aria-label="Basic example">
       <input class="form-control" type="submit" value="Save" (click)="editSubmit(editForm)"
         class="btn btn-outline-warning" />
-      <button (click)="selected=null; editTodo=null" class="btn btn-outline-primary">Cancel</button>
+      <button (click)="selected=null; editBev=null" class="btn btn-outline-primary">Cancel</button>
       <button (click)="deleteBev(editBev.id); selected=null; editBev=null"
         class="btn btn-outline-danger">Delete</button>
     </div>
