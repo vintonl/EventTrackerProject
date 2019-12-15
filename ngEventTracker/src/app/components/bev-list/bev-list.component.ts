@@ -29,6 +29,7 @@ export class BevListComponent implements OnInit {
   totalCaffeine = 0;
   totalCalories = 0;
   totalVolume = 0;
+  public isCollapsed = false;
 
   constructor(private bevSvc: BeverageService) { }
 
