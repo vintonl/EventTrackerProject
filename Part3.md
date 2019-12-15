@@ -30,9 +30,9 @@ From there, you can get a list of all the beverages, click on one of the beverag
 
 ### Topics implemented:
 
--   Build a HTML front end with TypeScript.
+-   Build a front-end with TypeScript, Angular, and VS Code.
 
--   Send asynchronous requests to Java controllers with HTTP to perform CRUD.
+-   Send asynchronous requests to Java controllers with HTTP to perform CRUD RESTfully.
 
 -   Consume and parse JSON responses with Angular.
 
@@ -44,7 +44,7 @@ From there, you can get a list of all the beverages, click on one of the beverag
 
 This project helped me better grasp the capabilities of Angular and REST API by allowing me to better learn how to:
 
--   Adding scripts to a web application
+-   Use Angular to access data and manipulate the DOM
 -   Send asynchronous requests to Java controllers with HTTP
 -   Send and receive JSON
 -   Build HTML with JavaScript
