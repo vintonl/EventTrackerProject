@@ -160,7 +160,7 @@
     rgba(22, 22, 22, 0.8) 100%
   );
 }
-.about-section p {
+/* .about-section p {
   margin-bottom: 5rem;
 }
 .projects-section {
@@ -248,7 +248,7 @@
 }
 .contact-section .social a:active {
   color: #fff;
-}
+} */
 body {
   font-family: Nunito;
   letter-spacing: 0.0625em;

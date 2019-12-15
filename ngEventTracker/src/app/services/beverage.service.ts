@@ -14,7 +14,6 @@ export class BeverageService {
   constructor(private http: HttpClient, private router: Router) { }
 
   index() {
-    // return this.http.get<Beverage[]>(this.url + '?sorted=true')
     return this.http.get<Beverage[]>(this.url)
       .pipe(
         catchError((err: any) => {
