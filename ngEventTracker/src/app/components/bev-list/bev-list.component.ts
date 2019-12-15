@@ -82,9 +82,9 @@ export class BevListComponent implements OnInit {
 
     }
     if (this.searchBevs.length === 0) {
-      this.hideSearchResult = false;
-    } else {
       this.hideSearchResult = true;
+    } else {
+      this.hideSearchResult = false;
     }
     this.keyword = null;
   }
@@ -106,9 +106,9 @@ export class BevListComponent implements OnInit {
     }
 
     if (this.searchBevs.length === 0) {
-      this.hideSearchResult = false;
-    } else {
       this.hideSearchResult = true;
+    } else {
+      this.hideSearchResult = false;
     }
     this.keyword = null;
   }
