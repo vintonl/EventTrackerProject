@@ -1,6 +1,6 @@
 # Beverage Tracker
 
-## Three Part Project
+## Three-Part Project
 
 ### Weekend Project for Weeks 12, 13, and 14 at Skill Distillery
 
@@ -14,7 +14,7 @@ This program is designed to be a REST API that creates, reads, updates and delet
 
 ### [Part 2 Overview:](https://github.com/vintonl/EventTrackerProject/blob/master/Part2.md)
 
-This program is designed to be a web application that creates, reads, updates and deletes beverage data from a database  using the REST API from Part 1. It was built as a HTML front end with JavaScript by adding scripts to index page.
+This program is designed to be a web application that creates, reads, updates and deletes beverage data from a database using the REST API from Part 1. It was built as an HTML front-end with JavaScript by adding scripts to the index page.
 
 ### [Part 3 Overview:](https://github.com/vintonl/EventTrackerProject/blob/master/Part3.md)
 

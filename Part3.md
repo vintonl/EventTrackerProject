@@ -32,13 +32,13 @@ From there, you can get a list of all the beverages, click on one of the beverag
 
 -   Build a HTML front end with TypeScript.
 
--   Send asynchronous requests to Java controllers with HTTP to preform CRUD.
+-   Send asynchronous requests to Java controllers with HTTP to perform CRUD.
 
 -   Consume and parse JSON responses with Angular.
 
 -   Tomcat 8 on AWS EC2 Instance.
 
--   Test Driven Development.
+-   Test-Driven Development.
 
 ### Lessons learned:
 
