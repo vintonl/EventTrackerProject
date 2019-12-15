@@ -11,6 +11,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { DatePipe } from '@angular/common';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DatePipe } from '@angular/common';
     NavBarComponent,
     NotFoundComponent,
     HomeComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

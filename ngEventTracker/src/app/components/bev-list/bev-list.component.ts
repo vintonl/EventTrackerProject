@@ -37,6 +37,7 @@ export class BevListComponent implements OnInit {
   }
 
   loadBevs() {
+    this.clearSearch();
     this.bevSvc.index().subscribe(
       (aGoodThingHappened) => {
         console.log(aGoodThingHappened);
@@ -56,7 +57,7 @@ export class BevListComponent implements OnInit {
 
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.bevs.length; i++) {
-      if (this.bevs[i].name.includes(this.keyword)) {
+      if (this.bevs[i].name.toLowerCase().includes(this.keyword.toLowerCase())) {
         this.searchBevs.push(this.bevs[i]);
         this.totalBevs++;
         this.totalCaffeine += this.bevs[i].caffeine;
@@ -64,7 +65,7 @@ export class BevListComponent implements OnInit {
         this.totalVolume += this.bevs[i].volume;
         continue;
       }
-      if (this.bevs[i].description && this.bevs[i].description.includes(this.keyword)) {
+      if (this.bevs[i].description && this.bevs[i].description.toLowerCase().includes(this.keyword.toLowerCase())) {
         this.searchBevs.push(this.bevs[i]);
         this.totalBevs++;
         this.totalCaffeine += this.bevs[i].caffeine;
@@ -72,7 +73,7 @@ export class BevListComponent implements OnInit {
         this.totalVolume += this.bevs[i].volume;
         continue;
       }
-      if (this.bevs[i].ingredients && this.bevs[i].ingredients.includes(this.keyword)) {
+      if (this.bevs[i].ingredients && this.bevs[i].ingredients.toLowerCase().includes(this.keyword.toLowerCase())) {
         this.searchBevs.push(this.bevs[i]);
         this.totalBevs++;
         this.totalCaffeine += this.bevs[i].caffeine;
