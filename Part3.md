@@ -22,9 +22,9 @@ From there, you can get a list of all the beverages, click on one of the beverag
 
 ### Technologies used:
 
--   Front-End: TypeScript, Angular, HTML, CSS, and JSON
+-   Front-End: TypeScript, HTML, and CSS
 -   Back-End: Java, Java Persistence API, Hibernate, REST API, Gradle, and JSON
--   IDE and Tools: Visual Studios Code, Spring Boot, MySQL Workbench, Postman and Atom
+-   IDE, Framework, and Tools: Angular, Visual Studios Code, Spring Boot, MySQL Workbench, Postman, and Atom
 -   Deployment: Apache Tomcat and AWS
 -   Repository: Git, and GitHub.
 
