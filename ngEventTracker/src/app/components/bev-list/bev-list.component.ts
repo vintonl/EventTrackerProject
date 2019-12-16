@@ -15,7 +15,7 @@ export class BevListComponent implements OnInit {
   searchBevs: Beverage[] = [];
   selected = null;
   addForm = null;
-  list = null;
+  list = false;
   newBev = new Beverage();
   editBev: Beverage = null;
   id: number = null;
@@ -23,7 +23,7 @@ export class BevListComponent implements OnInit {
   keyword: string = null;
   dateSearch: Date = null;
   dateSearchTotals = null;
-  searchResult: null;
+  searchResult = false;
   hideSearchResult = false;
   totalBevs = 0;
   totalCaffeine = 0;

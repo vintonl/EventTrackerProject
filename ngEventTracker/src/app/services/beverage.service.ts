@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Beverage } from './../models/beverage';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,7 +10,8 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BeverageService {
-  private url = 'http://localhost:8083/api/beverages';
+  private baseUrl = environment.baseUrl;
+  private url = this.baseUrl + 'api/beverages';
 
   constructor(private http: HttpClient, private router: Router) { }
 

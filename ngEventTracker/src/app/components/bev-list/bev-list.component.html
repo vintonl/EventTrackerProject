@@ -37,18 +37,18 @@
             beverage</button>
           <br>
           <br>
-          <form #searchForm="ngForm" class="form-group my-2 my-lg-0">
+          <form class="form-group my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
               [(ngModel)]="keyword">
             <button class="btn btn-dark my-2 my-sm-0" type="submit"
-              (click)="search(searchForm); list=true; searchResult=true">Search by keyword</button>
+              (click)="search(); list=true; searchResult=true">Search by keyword</button>
           </form>
           <br>
-          <form #searchDateForm="ngForm" class="form-group my-2 my-lg-0">
+          <form class="form-group my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="date" placeholder="Search" aria-label="Search" name="date"
               [(ngModel)]="dateSearch">
             <button class="btn btn-dark my-2 my-sm-0" type="submit"
-              (click)="searchDate(searchDateForm); list=true; searchResult=true">Search by Date</button>
+              (click)="searchDate(); list=true; searchResult=true">Search by Date</button>
           </form>
         </div>
 
@@ -99,18 +99,18 @@
               <div class="col-3"></div>
               <div class="col-6">
                 <div class="container-center">
-                  <form #searchForm="ngForm" class="form-group my-2 my-lg-0">
+                  <form class="form-group my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                       name="keyword" [(ngModel)]="keyword">
                     <button class="btn btn-dark my-2 my-sm-0" type="submit"
-                      (click)="search(searchForm); list=true; searchResult=true">Search by keyword</button>
+                      (click)="search(); list=true; searchResult=true">Search by keyword</button>
                   </form>
                   <br>
-                  <form #searchDateForm="ngForm" class="form-group my-2 my-lg-0">
+                  <form class="form-group my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="date" placeholder="Search" aria-label="Search" name="date"
                       [(ngModel)]="dateSearch">
                     <button class="btn btn-dark my-2 my-sm-0" type="submit"
-                      (click)="searchDate(searchDateForm); list=true; searchResult=true">Search by Date</button>
+                      (click)="searchDate(); list=true; searchResult=true">Search by Date</button>
                   </form>
                 </div>
               </div>
@@ -180,7 +180,7 @@
               <div class="text-center">
                 <h2>Add Beverage</h2>
               </div>
-              <form #newBevForm="ngForm" *ngIf="!selected" class="form-group">
+              <form *ngIf="!selected" class="form-group">
 
                 <label for="name">Name:
                   <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="newBev.name" />
@@ -211,7 +211,7 @@
                 </label> <br>
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <input type="submit" value="Add Item" (click)="addBev(newBevForm); displayBev(newBev); addForm=null"
+                  <input type="submit" value="Add Item" (click)="addBev(); displayBev(newBev); addForm=null"
                     class="btn btn-success" />
                   <button (click)="selected=null; editBev=null; addForm=null"
                     class="btn btn-dark my-2 my-sm-0">Cancel</button>
@@ -261,7 +261,7 @@
               <div class="text-center">
                 <h2>Edit Beverage Details</h2>
               </div>
-              <form #editForm="ngForm">
+              <form>
                 <h2>Beverage Id: {{editBev.id}}</h2>
                 <label for="task">Name:
                   <input class="form-control" type="text" name="name" placeholder="name" [(ngModel)]="editBev.name" />
@@ -292,10 +292,10 @@
                 </label>
                 <br>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <input class="form-control" type="submit" value="Save" (click)="editSubmit(editForm)"
+                  <input class="form-control" type="submit" value="Save" (click)="editSubmit()"
                     class="btn btn-success my-2 my-sm-0" />
                   <button (click)="selected=null; editBev=null" class="btn btn-dark my-2 my-sm-0">Cancel</button>
-                  <button (click)="deleteBev(editBev.id); selected=null; editBev=null"
+                  <button *ngIf="editBev.id > 5" (click)="deleteBev(editBev.id); selected=null; editBev=null"
                     class="btn btn-danger my-2 my-sm-0">Delete form tracker</button>
                 </div>
               </form>
