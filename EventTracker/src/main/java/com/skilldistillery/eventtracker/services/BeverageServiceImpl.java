@@ -82,6 +82,11 @@ public class BeverageServiceImpl implements BeverageService {
 
 	@Override
 	public boolean deleteBeverage(int id) {
+		if (id <= 5) {
+			return false;
+		}
+		
+		
 		Optional<Beverage> bevOpt = bevRepo.findById(id);
 		if (bevOpt.isPresent()) {
 			Beverage bev = bevOpt.get();

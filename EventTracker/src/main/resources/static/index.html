@@ -1,51 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Beverage Tracker</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script type="text/javascript" src="js/script.js"></script>
-</head>
-
+  <meta charset="utf-8">
+  <title>NgEventTracker</title>
+  <base href="/BeverageTracker/">  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="styles.372b53ce714c635fd83c.css"></head>
 <body>
-  <div class="container">
-  <h1>Welcome to Beverage Tracker</h1>
-    <a href="http://3.132.229.160:8080/EventTracker/">Home</a> <br> <br>
-    <form name="getAllButton">
-      <button name="lookupAll">Get All Beverages</button>
-    </form>
-    <br>
-    <form name="getByDate" id="getByDate">
-      <input type="number" name="year" placeholder="year (yyyy)" required min="2019"><br> 
-      <input type="number" name="month" placeholder="month (MM)" required min="1" min="12"><br> 
-      <input type="number" name="day" placeholder="day (dd)" required min="1" min="31"><br>
-      <button name="lookupByDate">Get Beverage Totals by Date</button>
-    </form>
-    <div id="output">
-      <div id="bevDataDate"></div>
-      <div id="bevData"></div>
-      <div id="oneBevData"></div>
-      <div id="editBev"></div>
-    </div>
-    <br>
-    <div>
-      <form name="addBev">
-        <input type="text" name="name" placeholder="name" required minlength="1"> <br> 
-        <input type="text" name="description" placeholder="description" required minlength="1">
-        <br> <input type="text" name="ingredients" placeholder="ingredients" required> <br>
-        <input type="radio" name="caffeinated" value="true">Caffeinated<br>
-        <input type="radio" name="caffeinated" value="false" checked>Caffeine-Free<br> 
-        <input type="number" name="caffeine" placeholder="caffeine" default="0" required min="0"> <br>
-        <input type="number" name="calories" placeholder="calories" default="0" required min="0"> <br> 
-        <input type="number" name="volume" placeholder="volume" default="0" required min="1"> <br>
-        <button name="add">Add a Beverage</button>
-      </form>
-    </div>
-  </div>
-  <br>
-  <br>
-  <br>
-</body>
-
+  <app-root></app-root>
+<script src="runtime-es2015.edb2fcf2778e7bf1d426.js" type="module"></script><script src="runtime-es5.edb2fcf2778e7bf1d426.js" nomodule defer></script><script src="polyfills-es5.6696c533341b95a3d617.js" nomodule defer></script><script src="polyfills-es2015.2987770fde9daa1d8a2e.js" type="module"></script><script src="main-es2015.c691334c4c79e7e1de4b.js" type="module"></script><script src="main-es5.c691334c4c79e7e1de4b.js" nomodule defer></script></body>
 </html>
