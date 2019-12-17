@@ -213,7 +213,7 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <input type="submit" value="Add Item" (click)="addBev(); displayBev(newBev); addForm=null"
                     class="btn btn-success" />
-                  <button (click)="selected=null; editBev=null; addForm=null"
+                  <button (click)="addForm=null; list=true; searchResult=null; loadBevs(); selected=null; editBev=null "
                     class="btn btn-dark my-2 my-sm-0">Cancel</button>
                 </div>
               </form>
@@ -296,7 +296,7 @@
                     class="btn btn-success my-2 my-sm-0" />
                   <button (click)="selected=null; editBev=null" class="btn btn-dark my-2 my-sm-0">Cancel</button>
                   <button *ngIf="editBev.id > 5" (click)="deleteBev(editBev.id); selected=null; editBev=null"
-                    class="btn btn-danger my-2 my-sm-0">Delete form tracker</button>
+                    class="btn btn-danger my-2 my-sm-0">Delete from tracker</button>
                 </div>
               </form>
             </div>
